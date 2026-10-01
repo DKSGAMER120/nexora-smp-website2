@@ -1,0 +1,1008 @@
+/* =========================================================
+   NEXORA SMP — NAVBAR
+   ========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    background:
+        rgba(4, 7, 14, 0.82);
+
+    border-bottom:
+        1px solid rgba(45, 75, 125, 0.45);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 8px 35px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   NAV CONTAINER
+   ========================================================= */
+
+.nav-container {
+    width:
+        min(1200px, calc(100% - 40px));
+
+    min-height: 72px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 1000;
+
+    letter-spacing: 3px;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.logo::before {
+    content: "";
+
+    position: absolute;
+
+    left: -12px;
+
+    width: 4px;
+
+    height: 28px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #299cff,
+            #7c4dff
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(41, 156, 255, 0.7);
+}
+
+.logo span {
+    margin-left: 7px;
+
+    color: #299cff;
+
+    text-shadow:
+        0 0 20px
+        rgba(41, 156, 255, 0.35);
+}
+
+.logo:hover {
+    transform:
+        translateY(-1px);
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(41, 156, 255, 0.3)
+        );
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 3px;
+}
+
+.nav-links a {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding:
+        8px 11px;
+
+    border-radius: 9px;
+
+    color:
+        #8f9fbd;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 3px;
+
+    width: 0;
+
+    height: 2px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #299cff,
+            #7c4dff
+        );
+
+    transform:
+        translateX(-50%);
+
+    transition:
+        width 0.2s ease;
+}
+
+.nav-links a:hover {
+    color:
+        #ffffff;
+
+    background:
+        rgba(41, 156, 255, 0.07);
+
+    transform:
+        translateY(-1px);
+}
+
+.nav-links a:hover::after {
+    width:
+        55%;
+}
+
+
+/* =========================================================
+   ACTIVE LINK
+   ========================================================= */
+
+.nav-links a.active {
+    color:
+        #ffffff;
+
+    background:
+        rgba(41, 156, 255, 0.10);
+}
+
+.nav-links a.active::after {
+    width:
+        55%;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.nav-links .login-button {
+    margin-left: 8px;
+
+    padding:
+        9px 16px;
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid rgba(70, 139, 225, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 143, 255, 0.18),
+            rgba(117, 76, 255, 0.18)
+        );
+
+    box-shadow:
+        0 5px 20px
+        rgba(41, 156, 255, 0.08);
+}
+
+.nav-links .login-button::after {
+    display: none;
+}
+
+.nav-links .login-button:hover {
+    border-color:
+        #299cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 143, 255, 0.28),
+            rgba(117, 76, 255, 0.28)
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(41, 156, 255, 0.18);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid #29476f;
+
+    border-radius: 10px;
+
+    background:
+        rgba(10, 19, 36, 0.9);
+
+    color:
+        #ffffff;
+
+    cursor: pointer;
+
+    font-size: 21px;
+
+    transition:
+        0.2s ease;
+}
+
+.mobile-menu-button:hover {
+    border-color:
+        #299cff;
+
+    background:
+        #101f38;
+
+    box-shadow:
+        0 0 20px
+        rgba(41, 156, 255, 0.15);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1150px) {
+
+    .nav-container {
+        width:
+            min(100% - 30px, 1100px);
+    }
+
+    .nav-links {
+        gap: 1px;
+    }
+
+    .nav-links a {
+        padding:
+            8px 8px;
+
+        font-size: 11px;
+    }
+
+    .nav-links .login-button {
+        margin-left: 5px;
+
+        padding:
+            8px 12px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        position:
+            sticky;
+    }
+
+    .nav-container {
+        min-height:
+            66px;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 66px;
+
+        left: 15px;
+        right: 15px;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 5px;
+
+        padding: 12px;
+
+        border:
+            1px solid #1d3156;
+
+        border-radius: 15px;
+
+        background:
+            rgba(5, 10, 20, 0.97);
+
+        backdrop-filter:
+            blur(18px);
+
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.55);
+    }
+
+    .nav-links.mobile-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+
+        min-height: 43px;
+
+        justify-content:
+            flex-start;
+
+        padding:
+            10px 14px;
+
+        font-size: 13px;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background:
+            rgba(41, 156, 255, 0.10);
+    }
+
+    .nav-links .login-button {
+        margin:
+            5px 0 0;
+
+        justify-content:
+            center;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .nav-container {
+        width:
+            calc(100% - 28px);
+    }
+
+    .logo {
+        font-size:
+            18px;
+
+        letter-spacing:
+            2px;
+    }
+
+    .logo::before {
+        left:
+            -8px;
+
+        width:
+            3px;
+
+        height:
+            23px;
+    }
+
+    .logo span {
+        margin-left:
+            5px;
+    }
+
+    .nav-links {
+        left:
+            10px;
+
+        right:
+            10px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.nav-links a:focus-visible,
+.mobile-menu-button:focus-visible,
+.logo:focus-visible {
+    outline:
+        2px solid #70c9ff;
+
+    outline-offset:
+        3px;
+}
+
+/* =========================================================
+   NEXORA SMP — ALL HTML COMPATIBILITY LAYER
+   APPEND ONLY — DO NOT REMOVE ORIGINAL CSS
+   ========================================================= */
+
+
+/* =========================================================
+   LOGIN BUTTON COMPATIBILITY
+   Supports:
+   .login-button
+   .login-btn
+   ========================================================= */
+
+.nav-links .login-btn {
+    margin-left: 8px;
+
+    padding:
+        9px 16px;
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid rgba(70, 139, 225, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 143, 255, 0.18),
+            rgba(117, 76, 255, 0.18)
+        );
+
+    box-shadow:
+        0 5px 20px
+        rgba(41, 156, 255, 0.08);
+
+    border-radius:
+        9px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    white-space:
+        nowrap;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-links .login-btn::after {
+    display:
+        none;
+}
+
+.nav-links .login-btn:hover {
+    color:
+        #ffffff;
+
+    border-color:
+        #299cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 143, 255, 0.28),
+            rgba(117, 76, 255, 0.28)
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(41, 156, 255, 0.18);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON COMPATIBILITY
+   Supports:
+   .mobile-menu-button
+   .mobile-menu-btn
+   ========================================================= */
+
+.mobile-menu-btn {
+    display:
+        none;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid #29476f;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(10, 19, 36, 0.9);
+
+    color:
+        #ffffff;
+
+    cursor:
+        pointer;
+
+    font-size:
+        21px;
+
+    transition:
+        0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+    border-color:
+        #299cff;
+
+    background:
+        #101f38;
+
+    box-shadow:
+        0 0 20px
+        rgba(41, 156, 255, 0.15);
+}
+
+
+/* =========================================================
+   MOBILE MENU STATE
+   Supports both menu naming styles
+   ========================================================= */
+
+.nav-links.mobile-open,
+.nav-links.open,
+.nav-links.active {
+    display:
+        flex;
+}
+
+
+/* =========================================================
+   NAVBAR LINK BUTTON COMPATIBILITY
+   Allows HTML <button> elements inside nav-links
+   ========================================================= */
+
+.nav-links button {
+    position:
+        relative;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        40px;
+
+    padding:
+        8px 11px;
+
+    border:
+        0;
+
+    border-radius:
+        9px;
+
+    background:
+        transparent;
+
+    color:
+        #8f9fbd;
+
+    font-family:
+        inherit;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    white-space:
+        nowrap;
+
+    cursor:
+        pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-links button:hover {
+    color:
+        #ffffff;
+
+    background:
+        rgba(41, 156, 255, 0.07);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   ACTIVE BUTTON
+   ========================================================= */
+
+.nav-links button.active {
+    color:
+        #ffffff;
+
+    background:
+        rgba(41, 156, 255, 0.10);
+}
+
+
+/* =========================================================
+   LOGO LINK COMPATIBILITY
+   ========================================================= */
+
+.nav-container > a.logo,
+.nav-container .logo-link {
+    text-decoration:
+        none;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   NAVBAR ANCHOR RESET
+   ========================================================= */
+
+.nav-container a {
+    text-decoration:
+        none;
+}
+
+
+/* =========================================================
+   NAV ICON COMPATIBILITY
+   ========================================================= */
+
+.nav-links a i,
+.nav-links a svg,
+.nav-links button i,
+.nav-links button svg {
+    flex-shrink:
+        0;
+}
+
+
+/* =========================================================
+   MOBILE COMPATIBILITY
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .mobile-menu-btn {
+        display:
+            flex;
+    }
+
+    .nav-links {
+        position:
+            absolute;
+
+        top:
+            66px;
+
+        left:
+            15px;
+
+        right:
+            15px;
+
+        display:
+            none;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            5px;
+
+        padding:
+            12px;
+
+        border:
+            1px solid #1d3156;
+
+        border-radius:
+            15px;
+
+        background:
+            rgba(5, 10, 20, 0.97);
+
+        backdrop-filter:
+            blur(18px);
+
+        -webkit-backdrop-filter:
+            blur(18px);
+
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.55);
+    }
+
+    .nav-links a,
+    .nav-links button {
+        width:
+            100%;
+
+        min-height:
+            43px;
+
+        justify-content:
+            flex-start;
+
+        padding:
+            10px 14px;
+
+        font-size:
+            13px;
+    }
+
+    .nav-links a::after {
+        display:
+            none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active,
+    .nav-links button:hover,
+    .nav-links button.active {
+        background:
+            rgba(41, 156, 255, 0.10);
+    }
+
+    .nav-links .login-btn,
+    .nav-links .login-button {
+        margin:
+            5px 0 0;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE COMPATIBILITY
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .mobile-menu-btn,
+    .mobile-menu-button {
+        width:
+            40px;
+
+        height:
+            40px;
+
+        font-size:
+            19px;
+    }
+
+    .nav-links {
+        left:
+            10px;
+
+        right:
+            10px;
+
+        padding:
+            10px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        min-height:
+            42px;
+
+        padding:
+            10px 12px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .nav-container {
+        width:
+            calc(100% - 22px);
+    }
+
+    .logo {
+        font-size:
+            16px;
+
+        letter-spacing:
+            1.5px;
+    }
+
+    .logo::before {
+        left:
+            -7px;
+
+        width:
+            3px;
+
+        height:
+            21px;
+    }
+
+    .nav-links {
+        top:
+            64px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY COMPATIBILITY
+   ========================================================= */
+
+.nav-links button:focus-visible,
+.nav-links .login-btn:focus-visible,
+.mobile-menu-btn:focus-visible {
+    outline:
+        2px solid #70c9ff;
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar,
+    .logo,
+    .nav-links a,
+    .nav-links button,
+    .login-btn,
+    .login-button,
+    .mobile-menu-btn,
+    .mobile-menu-button {
+        transition:
+            none !important;
+    }
+}
