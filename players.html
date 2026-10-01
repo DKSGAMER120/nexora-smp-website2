@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | Players</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .players-page {
+            width: 100%;
+            min-height: calc(100vh - 80px);
+            padding: 70px 20px 90px;
+        }
+
+        .players-container {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .players-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .players-eyebrow {
+            color: #69bdff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .players-header h1 {
+            margin: 0;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #6bc6ff,
+                #9d7aff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .players-header p {
+            max-width: 700px;
+            margin: 18px auto 0;
+
+            color: #9ba9c8;
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           TOP STATS
+        ========================= */
+
+        .player-summary {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            min-width: 0;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0e1830,
+                    #080d19
+                );
+
+            border: 1px solid #263f6d;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.25);
+        }
+
+        .summary-number {
+            font-size: 36px;
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #68c5ff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .summary-label {
+            margin-top: 6px;
+
+            color: #7888a7;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           SEARCH AREA
+        ========================= */
+
+        .players-panel {
+            width: 100%;
+            min-width: 0;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,26,52,.98),
+                    rgba(7,12,24,.98)
+                );
+
+            border: 1px solid #263f6d;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 18px 55px rgba(0,0,0,.35);
+
+            overflow: hidden;
+        }
+
+        .players-toolbar {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .players-toolbar h2 {
+            margin: 0;
+
+            font-size: 21px;
+        }
+
+        .players-toolbar-text {
+            color: #71809d;
+
+            font-size: 12px;
+        }
+
+        .search-box {
+            width: 100%;
+
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 15px 17px;
+
+            border-radius: 13px;
+
+            border: 1px solid #294570;
+
+            background: #050a15;
+
+            color: #edf5ff;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: .2s;
+        }
+
+        .search-box input::placeholder {
+            color: #65748f;
+        }
+
+        .search-box input:focus {
+            border-color: #4389d3;
+
+            box-shadow:
+                0 0 0 3px rgba(52,143,255,.12);
+        }
+
+        /* =========================
+           PLAYER GRID
+        ========================= */
+
+        .players-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 14px;
+
+            width: 100%;
+        }
+
+        /* =========================
+           PLAYER CARD
+        ========================= */
+
+        .player-card {
+            min-width: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 16px;
+
+            background: #0a1020;
+
+            border: 1px solid #20365e;
+
+            border-radius: 16px;
+
+            transition: .2s;
+
+            cursor: default;
+        }
+
+        .player-card:hover {
+            border-color: #3c72b7;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,.3);
+        }
+
+        .player-avatar {
+            width: 48px;
+            height: 48px;
+
+            flex: 0 0 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: #fff;
+
+            font-size: 18px;
+            font-weight: 900;
+
+            box-shadow:
+                0 7px 20px rgba(34,122,255,.22);
+        }
+
+        .player-content {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .player-name {
+            color: #edf4ff;
+
+            font-size: 15px;
+            font-weight: 900;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .player-rank {
+            margin-top: 4px;
+
+            color: #8292b0;
+
+            font-size: 12px;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .online-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-top: 7px;
+
+            color: #3ee593;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: .6px;
+        }
+
+        .online-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #3ee593;
+
+            box-shadow:
+                0 0 9px rgba(62,229,147,.7);
+        }
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty-players {
+            grid-column: 1 / -1;
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: #7d8ca7;
+
+            background: #080e1b;
+
+            border: 1px dashed #29436e;
+
+            border-radius: 16px;
+        }
+
+        .empty-icon {
+            font-size: 34px;
+
+            margin-bottom: 10px;
+        }
+
+        .empty-title {
+            color: #b5c3dc;
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .empty-text {
+            margin-top: 6px;
+
+            color: #71809d;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           API NOTICE
+        ========================= */
+
+        .api-notice {
+            margin-top: 20px;
+
+            padding: 17px 19px;
+
+            background: #0a1020;
+
+            border: 1px solid #293f68;
+
+            border-radius: 15px;
+
+            color: #8f9db9;
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+        .api-notice strong {
+            color: #b9dfff;
+        }
+
+        .api-notice code {
+            color: #7bcaff;
+
+            background: #050912;
+
+            padding: 2px 6px;
+
+            border-radius: 5px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .players-footer {
+            margin-top: 45px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #182541;
+
+            text-align: center;
+
+            color: #71809d;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           NAV
+        ========================= */
+
+        .navbar,
+        .nav-container,
+        .nav-links {
+            min-width: 0;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .players-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .player-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .players-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .players-page {
+                padding:
+                    50px 15px 65px;
+            }
+
+            .players-panel {
+                padding: 20px;
+                border-radius: 18px;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players-header {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .players-header h1 {
+                font-size: 40px;
+            }
+
+            .player-card {
+                padding: 14px;
+            }
+
+            .player-avatar {
+                width: 44px;
+                height: 44px;
+                flex-basis: 44px;
+            }
+        }
+
+        /* =========================
+           ACCESSIBILITY
+        ========================= */
+
+        button:focus-visible,
+        input:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #62bdff;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html">Lifesteal</a>
+
+                <a href="economy.html">Economy</a>
+
+                <a href="teams.html">Teams</a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="players.html" class="active">
+                    Players
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a href="rules.html">Rules</a>
+
+                <a href="vote.html">Vote</a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         PLAYERS PAGE
+    ========================================================== -->
+
+    <main class="players-page">
+
+        <div class="players-container">
+
+
+            <!-- =========================
+                 HEADER
+            ========================== -->
+
+            <section class="players-header">
+
+                <div class="players-eyebrow">
+                    NEXORA COMMUNITY
+                </div>
+
+                <h1>
+                    PLAYERS
+                </h1>
+
+                <p>
+                    Browse Nexora SMP players and view the
+                    community currently connected to the server.
+                    Live player information will be supplied
+                    by the Nexora backend.
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <section class="player-summary">
+
+                <div class="summary-card">
+
+                    <div
+                        class="summary-number"
+                        id="onlineCount"
+                    >
+                        --
+                    </div>
+
+                    <div class="summary-label">
+                        Online Now
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div
+                        class="summary-number"
+                        id="totalCount"
+                    >
+                        --
+                    </div>
+
+                    <div class="summary-label">
+                        Players Found
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div
+                        class="summary-number"
+                        id="lastUpdate"
+                    >
+                        --
+                    </div>
+
+                    <div class="summary-label">
+                        Last Update
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PLAYER PANEL
+            ========================== -->
+
+            <section class="players-panel">
+
+
+                <div class="players-toolbar">
+
+                    <h2>
+                        Server Players
+                    </h2>
+
+                    <div
+                        class="players-toolbar-text"
+                        id="playerStatus"
+                    >
+                        Waiting for backend...
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="search-box">
+
+                    <input
+                        type="search"
+                        id="playerSearch"
+                        placeholder="🔎 Search player..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- PLAYER GRID -->
+
+                <div
+                    class="players-grid"
+                    id="playersGrid"
+                >
+
+                    <div class="empty-players">
+
+                        <div class="empty-icon">
+                            👥
+                        </div>
+
+                        <div class="empty-title">
+                            Loading players...
+                        </div>
+
+                        <div class="empty-text">
+                            Connecting to the Nexora backend.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 API NOTICE
+            ========================== -->
+
+            <div class="api-notice">
+
+                <strong>
+                    Live player data:
+                </strong>
+
+                This page is ready for the Nexora Python
+                backend. Once
+                <code>/api/players</code>
+                is connected, the player list can update
+                automatically from the Minecraft server.
+
+            </div>
+
+
+            <!-- =========================
+                 FOOTER
+            ========================== -->
+
+            <footer class="players-footer">
+
+                <strong>NEXORA SMP</strong>
+                • Java + Bedrock
+                • Lifesteal Survival
+
+                <br>
+
+                © 2026 Nexora SMP. All rights reserved.
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuBtn && navLinks) {
+
+            menuBtn.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        navLinks.classList.toggle(
+                            "active"
+                        );
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        opened ? "true" : "false"
+                    );
+
+                }
+            );
+
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const playersGrid =
+            document.getElementById(
+                "playersGrid"
+            );
+
+        const onlineCount =
+            document.getElementById(
+                "onlineCount"
+            );
+
+        const totalCount =
+            document.getElementById(
+                "totalCount"
+            );
+
+        const lastUpdate =
+            document.getElementById(
+                "lastUpdate"
+            );
+
+        const playerStatus =
+            document.getElementById(
+                "playerStatus"
+            );
+
+        const playerSearch =
+            document.getElementById(
+                "playerSearch"
+            );
+
+
+        let allPlayers = [];
+
+
+        /* =====================================================
+           SAFE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================================
+           GET PLAYER NAME
+        ===================================================== */
+
+        function getPlayerName(player) {
+
+            if (
+                typeof player === "string"
+            ) {
+
+                return player;
+
+            }
+
+
+            if (
+                player &&
+                typeof player === "object"
+            ) {
+
+                return (
+                    player.name ??
+                    player.username ??
+                    player.player ??
+                    "Unknown Player"
+                );
+
+            }
+
+
+            return "Unknown Player";
+
+        }
+
+
+        /* =====================================================
+           GET PLAYER RANK
+        ===================================================== */
+
+        function getPlayerRank(player) {
+
+            if (
+                player &&
+                typeof player === "object"
+            ) {
+
+                return (
+                    player.rank ??
+                    player.group ??
+                    player.role ??
+                    "Player"
+                );
+
+            }
+
+
+            return "Player";
+
+        }
+
+
+        /* =====================================================
+           NORMALIZE PLAYERS
+        ===================================================== */
+
+        function normalizePlayers(data) {
+
+            if (
+                data &&
+                Array.isArray(data.players)
+            ) {
+
+                return data.players;
+
+            }
+
+
+            if (
+                data &&
+                data.players &&
+                Array.isArray(data.players.list)
+            ) {
+
+                return data.players.list;
+
+            }
+
+
+            if (
+                data &&
+                Array.isArray(data.online_players)
+            ) {
+
+                return data.online_players;
+
+            }
+
+
+            if (
+                data &&
+                Array.isArray(data.players_list)
+            ) {
+
+                return data.players_list;
+
+            }
+
+
+            return [];
+
+        }
+
+
+        /* =====================================================
+           RENDER PLAYERS
+        ===================================================== */
+
+        function renderPlayers(players) {
+
+            if (!players.length) {
+
+                playersGrid.innerHTML = `
+
+                    <div class="empty-players">
+
+                        <div class="empty-icon">
+                            👥
+                        </div>
+
+                        <div class="empty-title">
+                            No players found
+                        </div>
+
+                        <div class="empty-text">
+                            No matching players are currently
+                            available.
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            playersGrid.innerHTML =
+                players
+                    .map(function (player) {
+
+                        const name =
+                            getPlayerName(player);
+
+                        const rank =
+                            getPlayerRank(player);
+
+                        const firstLetter =
+                            escapeHTML(
+                                name
+                                    .charAt(0)
+                                    .toUpperCase()
+                            );
+
+
+                        return `
+
+                            <article
+                                class="player-card"
+                            >
+
+                                <div
+                                    class="player-avatar"
+                                >
+                                    ${firstLetter}
+                                </div>
+
+
+                                <div
+                                    class="player-content"
+                                >
+
+                                    <div
+                                        class="player-name"
+                                    >
+                                        ${escapeHTML(name)}
+                                    </div>
+
+
+                                    <div
+                                        class="player-rank"
+                                    >
+                                        ${escapeHTML(rank)}
+                                    </div>
+
+
+                                    <div
+                                        class="online-status"
+                                    >
+
+                                        <span
+                                            class="online-dot"
+                                        ></span>
+
+                                        Online
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           LOAD PLAYERS
+        ===================================================== */
+
+        async function loadPlayers() {
+
+            playerStatus.textContent =
+                "Connecting...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/players",
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "API status " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                allPlayers =
+                    normalizePlayers(data);
+
+
+                /*
+                 * Online count
+                 */
+
+                const online =
+                    data.players?.online ??
+                    data.online_count ??
+                    data.player_count ??
+                    allPlayers.length;
+
+
+                onlineCount.textContent =
+                    online;
+
+
+                totalCount.textContent =
+                    allPlayers.length;
+
+
+                /*
+                 * Update time
+                 */
+
+                lastUpdate.textContent =
+                    new Date()
+                        .toLocaleTimeString(
+                            [],
+                            {
+                                hour: "2-digit",
+                                minute: "2-digit"
+                            }
+                        );
+
+
+                playerStatus.textContent =
+                    "Live player data";
+
+
+                renderPlayers(
+                    allPlayers
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Nexora Players API Error:",
+                    error
+                );
+
+
+                allPlayers = [];
+
+
+                onlineCount.textContent =
+                    "--";
+
+
+                totalCount.textContent =
+                    "--";
+
+
+                lastUpdate.textContent =
+                    "--";
+
+
+                playerStatus.textContent =
+                    "Backend offline";
+
+
+                playersGrid.innerHTML = `
+
+                    <div class="empty-players">
+
+                        <div class="empty-icon">
+                            🌐
+                        </div>
+
+                        <div class="empty-title">
+                            Player API not connected
+                        </div>
+
+                        <div class="empty-text">
+                            Connect the Nexora Python
+                            backend at
+                            <strong>/api/players</strong>
+                            to display live players.
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        playerSearch.addEventListener(
+            "input",
+            function () {
+
+                const query =
+                    playerSearch
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                if (!query) {
+
+                    renderPlayers(
+                        allPlayers
+                    );
+
+                    return;
+
+                }
+
+
+                const filtered =
+                    allPlayers.filter(
+                        function (player) {
+
+                            const name =
+                                getPlayerName(
+                                    player
+                                ).toLowerCase();
+
+
+                            return name.includes(
+                                query
+                            );
+
+                        }
+                    );
+
+
+                renderPlayers(
+                    filtered
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        loadPlayers();
+
+
+        /* =====================================================
+           AUTO REFRESH
+        ===================================================== */
+
+        setInterval(
+            loadPlayers,
+            15000
+        );
+
+    </script>
+
+</body>
+</html>

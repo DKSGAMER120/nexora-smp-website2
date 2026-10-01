@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vote | Nexora SMP</title>
+
+    <!-- NEXORA GLOBAL CSS -->
+    <link rel="stylesheet" href="css/nexora.css">
+
+    <!-- NEXORA NAVBAR CSS -->
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* ==================================================
+           VOTE PAGE
+        ================================================== */
+
+        .vote-page {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 22px 70px;
+        }
+
+        /* HERO */
+
+        .vote-hero {
+            text-align: center;
+            padding: 75px 15px 45px;
+        }
+
+        .vote-eyebrow {
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .vote-hero h1 {
+            margin: 12px 0;
+            font-size: clamp(42px, 7vw, 72px);
+            font-weight: 950;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #70c9ff,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .vote-hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #9ba9c8;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* MAIN CARD */
+
+        .vote-main {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #2a4d82;
+            border-radius: 24px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, .35);
+        }
+
+        .vote-main::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            left: -130px;
+            top: -130px;
+
+            border-radius: 50%;
+
+            background: #168fff22;
+
+            filter: blur(15px);
+
+            pointer-events: none;
+        }
+
+        .vote-main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .vote-icon {
+            width: 76px;
+            height: 76px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 20px;
+
+            margin-bottom: 18px;
+
+            font-size: 36px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            box-shadow:
+                0 12px 35px #168fff33;
+        }
+
+        .vote-main h2 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        .vote-main p {
+            max-width: 760px;
+            margin: 0;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        /* VOTE GRID */
+
+        .vote-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 22px;
+        }
+
+        .vote-card {
+            background:
+                linear-gradient(
+                    180deg,
+                    #0d1529,
+                    #080d19
+                );
+
+            border: 1px solid #24345f;
+            border-radius: 20px;
+
+            padding: 26px;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .vote-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #3c78c4;
+
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, .35);
+        }
+
+        .vote-number {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 16px;
+
+            border-radius: 12px;
+
+            background: #101d39;
+            border: 1px solid #294a7d;
+
+            color: #8bd4ff;
+
+            font-weight: 900;
+        }
+
+        .vote-card h3 {
+            margin: 0 0 9px;
+            font-size: 21px;
+        }
+
+        .vote-card p {
+            margin: 0 0 20px;
+
+            color: #9ba9c8;
+
+            line-height: 1.6;
+        }
+
+        .vote-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 44px;
+
+            padding: 11px 18px;
+
+            border-radius: 11px;
+
+            border: 1px solid #31589b;
+
+            background: #101a31;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            transition: .2s;
+        }
+
+        .vote-btn:hover {
+            border-color: #5aaeff;
+            background: #132343;
+            transform: translateY(-2px);
+        }
+
+        /* REWARDS */
+
+        .reward-section {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .reward-card {
+            padding: 22px;
+
+            text-align: center;
+
+            background: #0a1020;
+
+            border: 1px solid #24345f;
+            border-radius: 17px;
+        }
+
+        .reward-icon {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .reward-card h3 {
+            margin: 0 0 7px;
+        }
+
+        .reward-card p {
+            margin: 0;
+
+            color: #8493b2;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+        /* HOW TO VOTE */
+
+        .how-to-vote {
+            margin-top: 22px;
+
+            padding: 28px;
+
+            background: #0a1020;
+
+            border: 1px solid #24345f;
+            border-radius: 20px;
+        }
+
+        .how-to-vote h2 {
+            margin: 0 0 20px;
+            font-size: 25px;
+        }
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+        .step {
+            display: flex;
+
+            gap: 13px;
+
+            padding: 17px;
+
+            background: #070c17;
+
+            border: 1px solid #1d3156;
+            border-radius: 14px;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+
+            font-weight: 900;
+        }
+
+        .step h3 {
+            margin: 0 0 5px;
+            font-size: 15px;
+        }
+
+        .step p {
+            margin: 0;
+
+            color: #8493b2;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        /* NOTICE */
+
+        .vote-notice {
+            margin-top: 22px;
+
+            padding: 18px 20px;
+
+            background: #0a1020;
+
+            border: 1px solid #2a3f67;
+            border-radius: 15px;
+
+            color: #8f9db9;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .vote-notice strong {
+            color: #dce9ff;
+        }
+
+        /* DISCORD */
+
+        .discord-box {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-top: 22px;
+            padding: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #101b38,
+                    #0a1020
+                );
+
+            border: 1px solid #294c83;
+            border-radius: 20px;
+        }
+
+        .discord-box h2 {
+            margin: 0 0 7px;
+            font-size: 23px;
+        }
+
+        .discord-box p {
+            margin: 0;
+
+            color: #8f9db9;
+
+            line-height: 1.5;
+        }
+
+        .discord-btn {
+            flex-shrink: 0;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 10px 30px #168fff2b;
+
+            transition: .2s;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        .vote-footer {
+            margin-top: 50px;
+
+            padding: 25px;
+
+            border-top: 1px solid #182541;
+
+            text-align: center;
+
+            color: #71809d;
+
+            font-size: 14px;
+        }
+
+        .vote-footer a {
+            color: #8bbcff;
+            text-decoration: none;
+        }
+
+        .vote-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 850px) {
+
+            .vote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reward-section {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .discord-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .vote-page {
+                padding:
+                    0 15px 55px;
+            }
+
+            .vote-hero {
+                padding:
+                    55px 10px 35px;
+            }
+
+            .vote-hero h1 {
+                font-size: 43px;
+            }
+
+            .vote-hero p {
+                font-size: 15px;
+            }
+
+            .vote-main {
+                padding: 23px;
+                border-radius: 19px;
+            }
+
+            .vote-main h2 {
+                font-size: 25px;
+            }
+
+            .vote-card {
+                padding: 21px;
+            }
+
+            .how-to-vote {
+                padding: 22px;
+            }
+
+            .discord-box {
+                padding: 22px;
+            }
+
+            .discord-btn {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+
+            .vote-hero h1 {
+                font-size: 37px;
+            }
+
+            .vote-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 30px;
+            }
+
+            .vote-card h3 {
+                font-size: 19px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .vote-card,
+            .vote-btn,
+            .discord-btn {
+                transition: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     NAVBAR
+================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            NEXORA <span>SMP</span>
+        </a>
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            type="button"
+        >
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html">About</a>
+
+            <a href="features.html">Features</a>
+
+            <a href="lifesteal.html">Lifesteal</a>
+
+            <a href="economy.html">Economy</a>
+
+            <a href="teams.html">Teams</a>
+
+            <a href="leaderboard.html">Leaderboard</a>
+
+            <a href="players.html">Players</a>
+
+            <a href="rules.html">Rules</a>
+
+            <a href="vote.html" class="active">Vote</a>
+
+            <a href="status.html">Status</a>
+
+            <a href="login.html" class="login-btn">
+                🔐 Login
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main>
+
+    <section class="vote-hero">
+
+        <div class="vote-eyebrow">
+            SUPPORT NEXORA SMP
+        </div>
+
+        <h1>
+            VOTE FOR NEXORA
+        </h1>
+
+        <p>
+            Support Nexora SMP by voting on server-listing
+            websites. Your vote helps more Minecraft players
+            discover the server and join our community.
+        </p>
+
+    </section>
+
+
+    <section class="vote-page">
+
+        <!-- MAIN INTRO -->
+
+        <div class="vote-main">
+
+            <div class="vote-main-content">
+
+                <div class="vote-icon">
+                    🗳️
+                </div>
+
+                <h2>
+                    Help Nexora Grow
+                </h2>
+
+                <p>
+                    Every vote helps Nexora reach more players.
+                    Open an official server-listing page, vote
+                    for Nexora, and return to the server.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- VOTING OPTIONS -->
+
+        <div class="vote-grid">
+
+            <article class="vote-card">
+
+                <div class="vote-number">
+                    01
+                </div>
+
+                <h3>
+                    Minecraft Server Listing
+                </h3>
+
+                <p>
+                    Use the official Nexora server-listing
+                    page to view server information and vote.
+                </p>
+
+                <a
+                    href="#"
+                    class="vote-btn"
+                    onclick="comingSoon(event)"
+                >
+                    🗳️ Vote
+                </a>
+
+            </article>
+
+
+            <article class="vote-card">
+
+                <div class="vote-number">
+                    02
+                </div>
+
+                <h3>
+                    More Voting Sites
+                </h3>
+
+                <p>
+                    Additional official voting links can be
+                    added here when they are available.
+                </p>
+
+                <a
+                    href="#"
+                    class="vote-btn"
+                    onclick="comingSoon(event)"
+                >
+                    🗳️ Coming Soon
+                </a>
+
+            </article>
+
+        </div>
+
+
+        <!-- SUPPORT CARDS -->
+
+        <div class="reward-section">
+
+            <article class="reward-card">
+
+                <div class="reward-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Support
+                </h3>
+
+                <p>
+                    Help the Nexora community grow.
+                </p>
+
+            </article>
+
+
+            <article class="reward-card">
+
+                <div class="reward-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Visibility
+                </h3>
+
+                <p>
+                    Help more players discover Nexora.
+                </p>
+
+            </article>
+
+
+            <article class="reward-card">
+
+                <div class="reward-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Community
+                </h3>
+
+                <p>
+                    Bring more players into the server.
+                </p>
+
+            </article>
+
+        </div>
+
+
+        <!-- HOW TO VOTE -->
+
+        <section class="how-to-vote">
+
+            <h2>
+                How To Vote
+            </h2>
+
+            <div class="steps">
+
+                <article class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Open Listing
+                        </h3>
+
+                        <p>
+                            Open the official Nexora
+                            server-listing page.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Submit Vote
+                        </h3>
+
+                        <p>
+                            Follow the listing website's
+                            voting instructions.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Return To Nexora
+                        </h3>
+
+                        <p>
+                            Join the server and continue
+                            playing with the community.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY NOTICE -->
+
+        <div class="vote-notice">
+
+            <strong>Important:</strong>
+
+            Only use official Nexora voting links.
+            Never enter your Minecraft password,
+            AuthMe password, or other private account
+            credentials on a voting website.
+
+        </div>
+
+
+        <!-- DISCORD -->
+
+        <div class="discord-box">
+
+            <div>
+
+                <h2>
+                    Need Help?
+                </h2>
+
+                <p>
+                    Join the Nexora Discord for announcements,
+                    support and server updates.
+                </p>
+
+            </div>
+
+            <a
+                href="https://discord.gg/vSGXupYJG"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="discord-btn"
+            >
+                💬 Join Discord
+            </a>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer class="vote-footer">
+
+            NEXORA SMP • Java + Bedrock • Lifesteal Survival
+
+            <br><br>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            &nbsp;•&nbsp;
+
+            <a href="rules.html">
+                Rules
+            </a>
+
+            &nbsp;•&nbsp;
+
+            <a href="status.html">
+                Status
+            </a>
+
+        </footer>
+
+    </section>
+
+</main>
+
+
+<!-- ==================================================
+     MOBILE NAV + PAGE JS
+================================================== -->
+
+<script>
+
+const mobileMenuBtn =
+    document.getElementById("mobileMenuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+/* MOBILE MENU */
+
+if (mobileMenuBtn && navLinks) {
+
+    mobileMenuBtn.addEventListener("click", function () {
+
+        const isOpen =
+            navLinks.classList.toggle("open");
+
+        mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+    });
+
+
+    /* CLOSE MENU AFTER CLICKING LINK */
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            navLinks.classList.remove("open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
+
+
+    /* ESC CLOSE */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            navLinks.classList.remove("open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* VOTE BUTTON */
+
+function comingSoon(event) {
+
+    event.preventDefault();
+
+    alert(
+        "The official Nexora voting link will be connected here soon."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

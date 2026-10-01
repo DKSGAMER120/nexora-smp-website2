@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | Minecraft Lifesteal Server</title>
+
+    <meta name="description"
+          content="Nexora SMP - Java and Bedrock Lifesteal Minecraft Server. Build, survive, trade and play with your community.">
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            NEXORA <span>SMP</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="features.html">Features</a>
+            <a href="lifesteal.html">Lifesteal</a>
+            <a href="economy.html">Economy</a>
+            <a href="teams.html">Teams</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="players.html">Players</a>
+            <a href="rules.html">Rules</a>
+            <a href="vote.html">Vote</a>
+
+            <a href="login.html" class="login-button">
+                Login
+            </a>
+
+        </nav>
+
+        <button class="mobile-menu-button" onclick="toggleMenu()">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            JAVA + BEDROCK
+        </div>
+
+        <h1>
+            WELCOME TO
+            <span>NEXORA SMP</span>
+        </h1>
+
+        <p class="hero-description">
+            A next-generation Minecraft Lifesteal survival server
+            where you can build, explore, trade, team up and create
+            your own story.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="https://discord.gg/vSGXupYJG"
+                target="_blank"
+                class="button button-primary"
+            >
+                JOIN DISCORD
+            </a>
+
+            <a
+                href="about.html"
+                class="button button-secondary"
+            >
+                EXPLORE NEXORA
+            </a>
+
+        </div>
+
+
+        <!-- SERVER IP -->
+
+        <div class="server-ip-box">
+
+            <div class="server-ip-label">
+                SERVER ADDRESS
+            </div>
+
+            <div class="server-ip">
+
+                <span id="serverIP">
+                    play.nexorasmp.2bd.net
+                </span>
+
+                <button onclick="copyServerIP()">
+                    COPY
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVER STATUS
+========================================================= -->
+
+<section class="status-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>SERVER</span>
+
+            <h2>
+                NEXORA STATUS
+            </h2>
+
+            <p>
+                Check the current Nexora server information.
+            </p>
+
+        </div>
+
+
+        <div class="status-grid">
+
+
+            <div class="status-card">
+
+                <div class="status-icon">
+                    🟢
+                </div>
+
+                <div>
+
+                    <h3>
+                        Server Status
+                    </h3>
+
+                    <p id="serverStatus">
+                        Checking...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <div class="status-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <h3>
+                        Players
+                    </h3>
+
+                    <p id="playerCount">
+                        Loading...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <div class="status-icon">
+                    🌍
+                </div>
+
+                <div>
+
+                    <h3>
+                        Platform
+                    </h3>
+
+                    <p>
+                        Java + Bedrock
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <div class="status-icon">
+                    ❤️
+                </div>
+
+                <div>
+
+                    <h3>
+                        Game Mode
+                    </h3>
+
+                    <p>
+                        Lifesteal Survival
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="features-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>WHY NEXORA?</span>
+
+            <h2>
+                BUILT FOR PLAYERS
+            </h2>
+
+            <p>
+                Nexora brings survival, progression and community
+                together in one Minecraft experience.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <a href="lifesteal.html" class="feature-card">
+
+                <div class="feature-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Lifesteal
+                </h3>
+
+                <p>
+                    Experience Nexora's Lifesteal survival
+                    progression system.
+                </p>
+
+            </a>
+
+
+            <a href="features.html" class="feature-card">
+
+                <div class="feature-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Java + Bedrock
+                </h3>
+
+                <p>
+                    Play together with players across Java
+                    and Bedrock Edition.
+                </p>
+
+            </a>
+
+
+            <a href="economy.html" class="feature-card">
+
+                <div class="feature-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Economy
+                </h3>
+
+                <p>
+                    Trade, buy, sell and build your own
+                    in-game economy.
+                </p>
+
+            </a>
+
+
+            <a href="teams.html" class="feature-card">
+
+                <div class="feature-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Teams
+                </h3>
+
+                <p>
+                    Create your team and build your community
+                    together.
+                </p>
+
+            </a>
+
+
+            <a href="players.html" class="feature-card">
+
+                <div class="feature-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Player Rankings
+                </h3>
+
+                <p>
+                    View players, statistics and server
+                    progression.
+                </p>
+
+            </a>
+
+
+            <a href="leaderboard.html" class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Leaderboard
+                </h3>
+
+                <p>
+                    Track the top players and server
+                    statistics.
+                </p>
+
+            </a>
+
+
+            <a href="economy.html" class="feature-card">
+
+                <div class="feature-icon">
+                    🏪
+                </div>
+
+                <h3>
+                    Player Shops
+                </h3>
+
+                <p>
+                    Build your economy through player
+                    trading and shops.
+                </p>
+
+            </a>
+
+
+            <a href="features.html" class="feature-card">
+
+                <div class="feature-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Custom Systems
+                </h3>
+
+                <p>
+                    Nexora uses custom authentication,
+                    economy and server systems.
+                </p>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LIFESTEAL INTRO
+========================================================= -->
+
+<section class="lifesteal-section">
+
+    <div class="section-container">
+
+        <div class="lifesteal-content">
+
+            <div class="lifesteal-text">
+
+                <span class="section-label">
+                    SURVIVE. PROGRESS. BUILD.
+                </span>
+
+                <h2>
+                    YOUR STORY
+                    <span>STARTS HERE.</span>
+                </h2>
+
+                <p>
+                    Start your journey on Nexora SMP.
+                    Build your base, explore the world,
+                    work with your team and progress through
+                    the Lifesteal experience.
+                </p>
+
+                <a
+                    href="lifesteal.html"
+                    class="button button-primary"
+                >
+                    LEARN ABOUT LIFESTEAL
+                </a>
+
+            </div>
+
+
+            <div class="lifesteal-stats">
+
+                <div class="stat-box">
+
+                    <strong>
+                        ❤️
+                    </strong>
+
+                    <span>
+                        Lifesteal
+                    </span>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <strong>
+                        🌍
+                    </strong>
+
+                    <span>
+                        Open World
+                    </span>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <strong>
+                        👥
+                    </strong>
+
+                    <span>
+                        Teams
+                    </span>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <strong>
+                        💰
+                    </strong>
+
+                    <span>
+                        Economy
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW TO JOIN
+========================================================= -->
+
+<section class="join-section">
+
+    <div class="section-container">
+
+        <div class="section-heading">
+
+            <span>READY?</span>
+
+            <h2>
+                JOIN NEXORA
+            </h2>
+
+            <p>
+                Getting started takes only a few seconds.
+            </p>
+
+        </div>
+
+
+        <div class="join-grid">
+
+
+            <div class="join-card">
+
+                <div class="join-number">
+                    01
+                </div>
+
+                <h3>
+                    GET MINECRAFT
+                </h3>
+
+                <p>
+                    Use Minecraft Java Edition or Bedrock Edition.
+                </p>
+
+            </div>
+
+
+            <div class="join-card">
+
+                <div class="join-number">
+                    02
+                </div>
+
+                <h3>
+                    ADD SERVER
+                </h3>
+
+                <p>
+                    Add the Nexora server address to your
+                    multiplayer server list.
+                </p>
+
+                <code>
+                    play.nexorasmp.2bd.net
+                </code>
+
+            </div>
+
+
+            <div class="join-card">
+
+                <div class="join-number">
+                    03
+                </div>
+
+                <h3>
+                    JOIN NEXORA
+                </h3>
+
+                <p>
+                    Connect to the server and begin your
+                    Nexora journey.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="join-discord">
+
+            <h3>
+                NEED HELP?
+            </h3>
+
+            <p>
+                Join the Nexora Discord for announcements,
+                support and community updates.
+            </p>
+
+            <a
+                href="https://discord.gg/vSGXupYJG"
+                target="_blank"
+                class="button button-primary"
+            >
+                JOIN DISCORD
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                NEXORA <span>SMP</span>
+            </div>
+
+            <p>
+                Minecraft Lifesteal Survival Server.
+                Java + Bedrock.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+
+                <h4>
+                    SERVER
+                </h4>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="features.html">
+                    Features
+                </a>
+
+                <a href="lifesteal.html">
+                    Lifesteal
+                </a>
+
+                <a href="economy.html">
+                    Economy
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    COMMUNITY
+                </h4>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    HELP
+                </h4>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a
+                    href="https://discord.gg/vSGXupYJG"
+                    target="_blank"
+                >
+                    Discord
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Nexora SMP. All rights reserved.
+        </p>
+
+        <p>
+            Java + Bedrock • Lifesteal Survival
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="js/main.js"></script>
+<script src="js/server.js"></script>
+
+
+<script>
+
+function copyServerIP() {
+
+    const ip = "play.nexorasmp.2bd.net";
+
+    navigator.clipboard.writeText(ip)
+        .then(() => {
+
+            alert("Nexora server IP copied!");
+
+        })
+        .catch(() => {
+
+            alert("Server IP: " + ip);
+
+        });
+
+}
+
+
+function toggleMenu() {
+
+    const nav = document.querySelector(".nav-links");
+
+    if (nav) {
+
+        nav.classList.toggle("mobile-open");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Economy | NEXORA SMP</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* =========================
+           ECONOMY PAGE
+        ========================== */
+
+        .economy-page {
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .economy-hero {
+            max-width: 1150px;
+            margin: auto;
+            padding: 95px 24px 65px;
+            text-align: center;
+        }
+
+        .economy-eyebrow {
+            display: inline-block;
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .economy-hero h1 {
+            margin: 0;
+            font-size: clamp(46px, 8vw, 82px);
+            line-height: 1.05;
+            font-weight: 950;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #72d6a1,
+                #70c9ff,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .economy-hero p {
+            max-width: 720px;
+            margin: 22px auto 0;
+            color: #9ba9c8;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           BALANCE DISPLAY
+        ========================== */
+
+        .balance-display {
+            max-width: 850px;
+            margin: 32px auto 0;
+
+            padding: 30px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #12372d,
+                    #0b1422 58%,
+                    #080d18
+                );
+
+            border: 1px solid #285a4b;
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 50px rgba(50, 220, 140, 0.04);
+        }
+
+        .balance-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
+        .balance-label {
+            color: #7f91ad;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .balance-value {
+            margin-top: 8px;
+
+            color: #7ff0b3;
+            font-size: clamp(34px, 7vw, 58px);
+            font-weight: 950;
+
+            text-shadow: 0 0 25px rgba(90, 240, 160, 0.16);
+        }
+
+        .balance-note {
+            display: block;
+            margin-top: 5px;
+            color: #8292ac;
+            font-size: 13px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        .economy-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 20px 24px 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin: 70px 0 35px;
+        }
+
+        .section-heading .small {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 9px 0 10px;
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .section-heading p {
+            max-width: 680px;
+            margin: auto;
+            color: #8f9db9;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           ECONOMY FEATURES
+        ========================== */
+
+        .economy-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+        }
+
+        .economy-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 26px;
+            min-height: 215px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101b32,
+                    #080d19
+                );
+
+            border: 1px solid #293e62;
+            border-radius: 20px;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .economy-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            top: -80px;
+            right: -70px;
+
+            border-radius: 50%;
+
+            background: #38d9961c;
+            filter: blur(5px);
+        }
+
+        .economy-card:hover {
+            transform: translateY(-6px);
+            border-color: #398b72;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .4);
+        }
+
+        .economy-icon {
+            position: relative;
+            z-index: 1;
+
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 29px;
+
+            background: #111d2b;
+            border: 1px solid #315648;
+            border-radius: 15px;
+
+            margin-bottom: 18px;
+        }
+
+        .economy-card h3 {
+            position: relative;
+            z-index: 1;
+
+            margin: 0 0 9px;
+
+            color: #ffffff;
+            font-size: 19px;
+        }
+
+        .economy-card p {
+            position: relative;
+            z-index: 1;
+
+            margin: 0;
+
+            color: #8f9db8;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           SHOP SYSTEM
+        ========================== */
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .shop-panel {
+            padding: 32px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101c34,
+                    #080d19
+                );
+
+            border: 1px solid #2b446d;
+            border-radius: 22px;
+        }
+
+        .shop-panel.buy {
+            border-color: #285b72;
+        }
+
+        .shop-panel.sell {
+            border-color: #365a48;
+        }
+
+        .shop-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .shop-panel h3 {
+            margin: 0 0 10px;
+
+            color: #ffffff;
+            font-size: 26px;
+        }
+
+        .shop-panel p {
+            margin: 0 0 20px;
+
+            color: #919fba;
+            line-height: 1.7;
+        }
+
+        .shop-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .shop-list li {
+            display: flex;
+            gap: 10px;
+
+            color: #c4d1e8;
+
+            margin-bottom: 11px;
+            line-height: 1.5;
+        }
+
+        .shop-list li span {
+            color: #70c9ff;
+            font-weight: 900;
+        }
+
+        /* =========================
+           ECONOMY FLOW
+        ========================== */
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .flow-card {
+            position: relative;
+
+            padding: 30px;
+
+            background: #0a1020;
+            border: 1px solid #253a60;
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        .flow-number {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            margin: 0 auto 17px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #38d996
+                );
+
+            color: #ffffff;
+            font-weight: 950;
+        }
+
+        .flow-card h3 {
+            margin: 0 0 9px;
+            color: #ffffff;
+        }
+
+        .flow-card p {
+            margin: 0;
+            color: #8d9bb7;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           ECONOMY TIPS
+        ========================== */
+
+        .tips-panel {
+            padding: 31px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    #173b36,
+                    #0a1020 58%
+                );
+
+            border: 1px solid #31594e;
+            border-radius: 22px;
+        }
+
+        .tips-panel h3 {
+            margin: 0 0 18px;
+
+            color: #ffffff;
+            font-size: 25px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+        }
+
+        .tip {
+            padding: 16px;
+
+            background: #070d19;
+            border: 1px solid #213b48;
+            border-radius: 14px;
+        }
+
+        .tip strong {
+            display: block;
+
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .tip span {
+            color: #8292ad;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        /* =========================
+           NOTE
+        ========================== */
+
+        .economy-note {
+            margin-top: 22px;
+
+            padding: 22px 24px;
+
+            border: 1px solid #3c4864;
+            border-radius: 17px;
+
+            background: #0b1120;
+        }
+
+        .economy-note strong {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 7px;
+        }
+
+        .economy-note p {
+            margin: 0;
+            color: #8d9bb6;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .economy-cta {
+            max-width: 1000px;
+            margin: 75px auto 0;
+
+            padding: 48px 30px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0,
+                    #123d32,
+                    #0b1221 58%,
+                    #080d18
+                );
+
+            border: 1px solid #315b50;
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+        }
+
+        .economy-cta h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .economy-cta p {
+            max-width: 620px;
+
+            margin: 0 auto 25px;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 900;
+
+            background: #101a31;
+            border: 1px solid #315b99;
+
+            transition: .2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            border-color: #6798d2;
+        }
+
+        .cta-button.primary {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #38d996
+                );
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .site-footer {
+            margin-top: 90px;
+
+            background: #04060c;
+            border-top: 1px solid #182541;
+        }
+
+        .footer-container {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 55px 24px 25px;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand h2 span {
+            color: #39a8ff;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+
+            color: #71809d;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 15px;
+
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #71809d;
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: .2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #70c9ff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 20px 24px 25px;
+
+            border-top: 1px solid #121d33;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            color: #596a89;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 950px) {
+
+            .economy-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .shop-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .economy-hero {
+                padding-top: 65px;
+            }
+
+            .economy-hero p {
+                font-size: 16px;
+            }
+
+            .economy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .economy-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .economy-hero {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .shop-panel {
+                padding: 24px;
+            }
+
+            .tips-panel {
+                padding: 24px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .economy-cta {
+                padding: 35px 22px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="economy-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Open navigation"
+                onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="mainNav">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html">Lifesteal</a>
+
+                <a href="economy.html" class="active">
+                    Economy
+                </a>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="economy-hero">
+
+            <div class="economy-eyebrow">
+                NEXORA SMP • SERVER ECONOMY
+            </div>
+
+            <h1>ECONOMY</h1>
+
+            <p>
+                Build your balance, trade resources and use the
+                Nexora economy system to support your survival
+                progression.
+            </p>
+
+
+            <div class="balance-display">
+
+                <div class="balance-icon">
+                    💰
+                </div>
+
+                <div class="balance-label">
+                    NEXORA ECONOMY
+                </div>
+
+                <div class="balance-value">
+                    $0
+                </div>
+
+                <span class="balance-note">
+                    Your balance is controlled by the live server economy.
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <section class="economy-container">
+
+
+            <!-- =========================
+                 CORE FEATURES
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    ECONOMY SYSTEM
+                </div>
+
+                <h2>Build Your Economy</h2>
+
+                <p>
+                    Manage your balance, trade resources and make
+                    purchases through Nexora's economy systems.
+                </p>
+
+            </div>
+
+
+            <div class="economy-grid">
+
+                <div class="economy-card">
+
+                    <div class="economy-icon">
+                        💰
+                    </div>
+
+                    <h3>Player Balance</h3>
+
+                    <p>
+                        Keep track of your in-game money and use it
+                        for available server purchases.
+                    </p>
+
+                </div>
+
+
+                <div class="economy-card">
+
+                    <div class="economy-icon">
+                        🏪
+                    </div>
+
+                    <h3>Server Shop</h3>
+
+                    <p>
+                        Browse available shop categories and purchase
+                        resources through the server economy.
+                    </p>
+
+                </div>
+
+
+                <div class="economy-card">
+
+                    <div class="economy-icon">
+                        📦
+                    </div>
+
+                    <h3>Buy & Sell</h3>
+
+                    <p>
+                        Use the Nexora shop system to buy available
+                        items and sell supported resources.
+                    </p>
+
+                </div>
+
+
+                <div class="economy-card">
+
+                    <div class="economy-icon">
+                        📈
+                    </div>
+
+                    <h3>Progression</h3>
+
+                    <p>
+                        Build your economy over time as part of your
+                        wider survival progression.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SHOP
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    NEXORA SHOP
+                </div>
+
+                <h2>Buy & Sell</h2>
+
+                <p>
+                    Manage your resources through the Nexora shop
+                    system.
+                </p>
+
+            </div>
+
+
+            <div class="shop-grid">
+
+                <div class="shop-panel buy">
+
+                    <div class="shop-icon">
+                        🛒
+                    </div>
+
+                    <h3>Buy Items</h3>
+
+                    <p>
+                        Spend your balance on supported items and
+                        resources available through the server shop.
+                    </p>
+
+                    <ul class="shop-list">
+
+                        <li>
+                            <span>✓</span>
+                            Browse shop categories
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            View available items
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Purchase supported resources
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Manage your spending
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="shop-panel sell">
+
+                    <div class="shop-icon">
+                        💵
+                    </div>
+
+                    <h3>Sell Items</h3>
+
+                    <p>
+                        Convert supported resources into economy
+                        balance and continue your progression.
+                    </p>
+
+                    <ul class="shop-list">
+
+                        <li>
+                            <span>✓</span>
+                            Select supported resources
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Check available values
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Sell resources
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Grow your balance
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ECONOMY FLOW
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    SIMPLE PROGRESSION
+                </div>
+
+                <h2>How The Economy Fits In</h2>
+
+                <p>
+                    Your resources can become part of your wider
+                    survival progression.
+                </p>
+
+            </div>
+
+
+            <div class="flow">
+
+                <div class="flow-card">
+
+                    <div class="flow-number">
+                        01
+                    </div>
+
+                    <h3>Gather</h3>
+
+                    <p>
+                        Collect resources while exploring and
+                        progressing through survival.
+                    </p>
+
+                </div>
+
+
+                <div class="flow-card">
+
+                    <div class="flow-number">
+                        02
+                    </div>
+
+                    <h3>Trade</h3>
+
+                    <p>
+                        Use available shop and trading systems
+                        to manage your resources.
+                    </p>
+
+                </div>
+
+
+                <div class="flow-card">
+
+                    <div class="flow-number">
+                        03
+                    </div>
+
+                    <h3>Progress</h3>
+
+                    <p>
+                        Use your economy to support your continued
+                        survival journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 TIPS
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    ECONOMY TIPS
+                </div>
+
+                <h2>Manage Your Balance</h2>
+
+                <p>
+                    A few simple habits can help you keep your
+                    economy organized.
+                </p>
+
+            </div>
+
+
+            <div class="tips-panel">
+
+                <h3>💡 Smart Economy Habits</h3>
+
+                <div class="tips-grid">
+
+                    <div class="tip">
+
+                        <strong>
+                            📦 Keep Useful Resources
+                        </strong>
+
+                        <span>
+                            Do not sell resources that you may need
+                            for your own survival progression.
+                        </span>
+
+                    </div>
+
+
+                    <div class="tip">
+
+                        <strong>
+                            💰 Track Your Spending
+                        </strong>
+
+                        <span>
+                            Keep enough balance available for
+                            important purchases.
+                        </span>
+
+                    </div>
+
+
+                    <div class="tip">
+
+                        <strong>
+                            🏪 Check The Shop
+                        </strong>
+
+                        <span>
+                            Review available shop categories before
+                            deciding what to buy or sell.
+                        </span>
+
+                    </div>
+
+
+                    <div class="tip">
+
+                        <strong>
+                            📈 Think Long-Term
+                        </strong>
+
+                        <span>
+                            Use your economy as part of your overall
+                            survival progression.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NOTE
+            ========================== -->
+
+            <div class="economy-note">
+
+                <strong>
+                    ℹ️ Economy Values
+                </strong>
+
+                <p>
+                    Item prices, sell values, available categories
+                    and player balances are controlled by the live
+                    Nexora server configuration. This website page
+                    intentionally does not hard-code changing prices.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CTA
+            ========================== -->
+
+            <section class="economy-cta">
+
+                <h2>
+                    Build Your Fortune
+                </h2>
+
+                <p>
+                    Join Nexora SMP, start collecting resources and
+                    build your own economy through survival.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                        href="index.html"
+                        class="cta-button primary">
+                        🌐 Join Nexora
+                    </a>
+
+                    <a
+                        href="lifesteal.html"
+                        class="cta-button">
+                        ❤️ Lifesteal
+                    </a>
+
+                    <a
+                        href="https://discord.gg/vSGXupYJG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cta-button">
+                        💬 Join Discord
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    NEXORA <span>SMP</span>
+                </h2>
+
+                <p>
+                    Java + Bedrock Lifesteal survival server
+                    built around progression, economy, teams
+                    and community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="features.html">Features</a>
+                <a href="lifesteal.html">Lifesteal</a>
+                <a href="economy.html">Economy</a>
+                <a href="teams.html">Teams</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Server</h3>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Community</h3>
+
+                <a
+                    href="https://discord.gg/vSGXupYJG"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Discord
+                </a>
+
+                <a
+                    href="https://youtube.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a href="login.html">
+                    Player Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NEXORA SMP. All rights reserved.
+            </span>
+
+            <span>
+                Java + Bedrock • Lifesteal
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     MOBILE NAVIGATION
+========================== -->
+
+<script>
+
+function toggleMenu() {
+
+    const nav = document.getElementById("mainNav");
+
+    if (!nav) return;
+
+    nav.classList.toggle("active");
+
+}
+
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        const nav = document.getElementById("mainNav");
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

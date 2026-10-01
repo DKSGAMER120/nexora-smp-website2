@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Features | NEXORA SMP</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* =========================
+           FEATURES PAGE
+        ========================== */
+
+        .features-page {
+            min-height: 100vh;
+        }
+
+        .features-hero {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 95px 24px 65px;
+            text-align: center;
+        }
+
+        .features-eyebrow {
+            display: inline-block;
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .features-hero h1 {
+            margin: 0;
+            font-size: clamp(44px, 8vw, 78px);
+            font-weight: 950;
+            line-height: 1.05;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #70c9ff,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-hero p {
+            max-width: 720px;
+            margin: 22px auto 0;
+            color: #9ba9c8;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .features-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 20px 24px 80px;
+        }
+
+        /* =========================
+           FEATURE GRID
+        ========================== */
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 220px;
+
+            padding: 27px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 28, 54, 0.98),
+                    rgba(7, 12, 25, 0.98)
+                );
+
+            border: 1px solid #24345f;
+            border-radius: 20px;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .feature-card::before {
+            content: "";
+
+            position: absolute;
+            width: 150px;
+            height: 150px;
+
+            top: -75px;
+            right: -75px;
+
+            background: #168fff22;
+            border-radius: 50%;
+
+            filter: blur(5px);
+
+            transition: 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            border-color: #3d78c5;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+        }
+
+        .feature-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .feature-icon {
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 29px;
+
+            background: linear-gradient(
+                135deg,
+                #10284d,
+                #181536
+            );
+
+            border: 1px solid #31558c;
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card h3 {
+            position: relative;
+            z-index: 1;
+
+            margin: 0 0 10px;
+
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            position: relative;
+            z-index: 1;
+
+            margin: 0;
+
+            color: #9ba9c8;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           FEATURE HIGHLIGHT
+        ========================== */
+
+        .feature-highlight {
+            margin-top: 22px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .highlight-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 32px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101d39,
+                    #080d1b
+                );
+
+            border: 1px solid #294875;
+            border-radius: 22px;
+        }
+
+        .highlight-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -100px;
+            bottom: -120px;
+
+            background: #754cff20;
+            border-radius: 50%;
+
+            filter: blur(15px);
+        }
+
+        .highlight-label {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .highlight-card h2 {
+            margin: 10px 0;
+
+            font-size: 29px;
+            color: #ffffff;
+        }
+
+        .highlight-card p {
+            color: #9ba9c8;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .highlight-list {
+            margin: 20px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .highlight-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+
+            color: #c7d5ef;
+
+            margin-bottom: 11px;
+            line-height: 1.5;
+        }
+
+        .highlight-list li span {
+            color: #62bdff;
+            font-weight: 900;
+        }
+
+        /* =========================
+           SYSTEM SECTION
+        ========================== */
+
+        .systems-section {
+            margin-top: 75px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading .small {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 9px 0 10px;
+
+            font-size: clamp(30px, 5vw, 45px);
+            color: #ffffff;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #8f9db9;
+            line-height: 1.7;
+        }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .system-card {
+            padding: 23px;
+
+            background: #0a1020;
+            border: 1px solid #22365d;
+            border-radius: 17px;
+
+            transition: 0.2s ease;
+        }
+
+        .system-card:hover {
+            border-color: #356eb4;
+            transform: translateY(-4px);
+        }
+
+        .system-card h3 {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .system-card p {
+            margin: 0;
+            color: #8292b1;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .features-cta {
+            max-width: 1000px;
+            margin: 75px auto 0;
+
+            padding: 48px 30px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0,
+                    #173665,
+                    #0b1121 60%,
+                    #080d18
+                );
+
+            border: 1px solid #2d5184;
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .features-cta h2 {
+            margin: 0 0 12px;
+
+            font-size: clamp(30px, 5vw, 45px);
+            color: #ffffff;
+        }
+
+        .features-cta p {
+            max-width: 620px;
+            margin: 0 auto 25px;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            color: #ffffff;
+
+            border: 1px solid #315b99;
+
+            background: #101a31;
+
+            transition: 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            border-color: #5b91d2;
+        }
+
+        .cta-button.primary {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .site-footer {
+            margin-top: 90px;
+
+            border-top: 1px solid #182541;
+
+            background: #04060c;
+        }
+
+        .footer-container {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 55px 24px 25px;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 12px;
+
+            font-size: 24px;
+            letter-spacing: 2px;
+
+            color: #ffffff;
+        }
+
+        .footer-brand h2 span {
+            color: #39a8ff;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+
+            color: #71809d;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 15px;
+
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #71809d;
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #70c9ff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 20px 24px 25px;
+
+            border-top: 1px solid #121d33;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+
+            color: #596a89;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: #70c9ff;
+            text-decoration: none;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 950px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .systems-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .features-hero {
+                padding-top: 65px;
+            }
+
+            .features-hero p {
+                font-size: 16px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-highlight {
+                grid-template-columns: 1fr;
+            }
+
+            .systems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-cta {
+                padding: 35px 22px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .features-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .features-hero {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .feature-card {
+                padding: 22px;
+            }
+
+            .highlight-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="features-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Open navigation"
+                onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="mainNav">
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="features.html" class="active">Features</a>
+                <a href="lifesteal.html">Lifesteal</a>
+                <a href="economy.html">Economy</a>
+                <a href="teams.html">Teams</a>
+                <a href="players.html">Players</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="rules.html">Rules</a>
+                <a href="vote.html">Vote</a>
+                <a href="status.html">Status</a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="features-hero">
+
+            <div class="features-eyebrow">
+                NEXORA SMP • SERVER SYSTEMS
+            </div>
+
+            <h1>SERVER FEATURES</h1>
+
+            <p>
+                Explore the systems, gameplay mechanics and community
+                features that make Nexora SMP a complete Java + Bedrock
+                Lifesteal survival experience.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN FEATURES
+        ========================== -->
+
+        <section class="features-container">
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🌍</div>
+
+                    <h3>Java + Bedrock</h3>
+
+                    <p>
+                        Java Edition and Bedrock Edition players can
+                        join the same Nexora world through the server's
+                        crossplay setup.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">❤️</div>
+
+                    <h3>Lifesteal Survival</h3>
+
+                    <p>
+                        Experience survival progression with Nexora's
+                        Lifesteal system and heart-based gameplay.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">💰</div>
+
+                    <h3>Economy</h3>
+
+                    <p>
+                        Earn and manage your in-game balance while
+                        using shops and the Nexora economy system.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">👥</div>
+
+                    <h3>Teams</h3>
+
+                    <p>
+                        Create a team, cooperate with friends and
+                        build your own community on Nexora.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🏪</div>
+
+                    <h3>Server Shop</h3>
+
+                    <p>
+                        Browse categories and purchase available
+                        items through the Nexora shop system.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🛒</div>
+
+                    <h3>Buy & Sell</h3>
+
+                    <p>
+                        Manage your resources using dedicated buying
+                        and selling systems.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🎁</div>
+
+                    <h3>Kits</h3>
+
+                    <p>
+                        Access available server and rank kits through
+                        the Nexora kit system.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🛡️</div>
+
+                    <h3>Protected Spawn</h3>
+
+                    <p>
+                        Start your Nexora journey from a protected
+                        spawn area designed for new players.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🔐</div>
+
+                    <h3>Nexora Authentication</h3>
+
+                    <p>
+                        Account authentication helps protect player
+                        accounts and server access.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">📊</div>
+
+                    <h3>Player Statistics</h3>
+
+                    <p>
+                        The website system is designed to display
+                        player information and server statistics.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🌐</div>
+
+                    <h3>Live Server Status</h3>
+
+                    <p>
+                        Check server availability, player counts and
+                        connection information from the website.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">💬</div>
+
+                    <h3>Discord Community</h3>
+
+                    <p>
+                        Stay connected with the Nexora community through
+                        the official Discord server.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HIGHLIGHTS
+            ========================== -->
+
+            <div class="feature-highlight">
+
+                <div class="highlight-card">
+
+                    <div class="highlight-label">
+                        GAMEPLAY
+                    </div>
+
+                    <h2>Built For Survival</h2>
+
+                    <p>
+                        Nexora combines classic Minecraft survival
+                        with custom systems designed around progression,
+                        economy and community.
+                    </p>
+
+                    <ul class="highlight-list">
+
+                        <li>
+                            <span>✓</span>
+                            Explore and build your own base
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Progress through the Lifesteal system
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Manage your economy
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Play together with friends
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="highlight-card">
+
+                    <div class="highlight-label">
+                        COMMUNITY
+                    </div>
+
+                    <h2>Play Together</h2>
+
+                    <p>
+                        Nexora is designed around multiplayer survival,
+                        teamwork and a connected community.
+                    </p>
+
+                    <ul class="highlight-list">
+
+                        <li>
+                            <span>✓</span>
+                            Java + Bedrock crossplay
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Teams and community gameplay
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Discord community
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Website player systems
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 CUSTOM SYSTEMS
+            ========================== -->
+
+            <section class="systems-section">
+
+                <div class="section-heading">
+
+                    <div class="small">
+                        NEXORA SYSTEMS
+                    </div>
+
+                    <h2>More Than Survival</h2>
+
+                    <p>
+                        Nexora combines multiple server systems into
+                        one connected Minecraft experience.
+                    </p>
+
+                </div>
+
+
+                <div class="systems-grid">
+
+                    <div class="system-card">
+
+                        <h3>🔐 Account Security</h3>
+
+                        <p>
+                            Authentication and account protection
+                            systems help keep player accounts secure.
+                        </p>
+
+                    </div>
+
+
+                    <div class="system-card">
+
+                        <h3>⚡ Teleportation</h3>
+
+                        <p>
+                            Convenient server travel and teleportation
+                            systems make exploration easier.
+                        </p>
+
+                    </div>
+
+
+                    <div class="system-card">
+
+                        <h3>📦 Inventory Utilities</h3>
+
+                        <p>
+                            Server utilities help players manage their
+                            items and everyday survival gameplay.
+                        </p>
+
+                    </div>
+
+
+                    <div class="system-card">
+
+                        <h3>🏆 Rankings</h3>
+
+                        <p>
+                            Server ranks and progression systems give
+                            players additional goals to work toward.
+                        </p>
+
+                    </div>
+
+
+                    <div class="system-card">
+
+                        <h3>📢 Announcements</h3>
+
+                        <p>
+                            Stay updated with server news, events and
+                            important Nexora announcements.
+                        </p>
+
+                    </div>
+
+
+                    <div class="system-card">
+
+                        <h3>📈 Website Integration</h3>
+
+                        <p>
+                            Nexora's website is designed to connect
+                            server information with online player tools.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 CTA
+            ========================== -->
+
+            <section class="features-cta">
+
+                <h2>Ready To Join Nexora?</h2>
+
+                <p>
+                    Connect to Nexora SMP, start your survival journey
+                    and build your own story with the community.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                        href="index.html"
+                        class="cta-button primary">
+                        🌐 View Server
+                    </a>
+
+                    <a
+                        href="about.html"
+                        class="cta-button">
+                        ℹ️ About Nexora
+                    </a>
+
+                    <a
+                        href="https://discord.gg/vSGXupYJG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cta-button">
+                        💬 Join Discord
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    NEXORA <span>SMP</span>
+                </h2>
+
+                <p>
+                    Java + Bedrock Lifesteal survival server
+                    built around progression, economy, teams
+                    and community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="features.html">Features</a>
+                <a href="lifesteal.html">Lifesteal</a>
+                <a href="economy.html">Economy</a>
+                <a href="teams.html">Teams</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Server</h3>
+
+                <a href="players.html">Players</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="rules.html">Rules</a>
+                <a href="vote.html">Vote</a>
+                <a href="status.html">Status</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Community</h3>
+
+                <a
+                    href="https://discord.gg/vSGXupYJG"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Discord
+                </a>
+
+                <a
+                    href="https://youtube.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a href="login.html">
+                    Player Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NEXORA SMP. All rights reserved.
+            </span>
+
+            <span>
+                Java + Bedrock • Lifesteal
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     MOBILE NAVIGATION
+========================== -->
+
+<script>
+
+function toggleMenu() {
+
+    const nav = document.getElementById("mainNav");
+
+    if (!nav) return;
+
+    nav.classList.toggle("active");
+
+}
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        const nav = document.getElementById("mainNav");
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

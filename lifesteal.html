@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lifesteal | NEXORA SMP</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        .lifesteal-page {
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .lifesteal-hero {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 95px 24px 65px;
+            text-align: center;
+        }
+
+        .lifesteal-eyebrow {
+            display: inline-block;
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .lifesteal-hero h1 {
+            margin: 0;
+            font-size: clamp(46px, 8vw, 82px);
+            line-height: 1.05;
+            font-weight: 950;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #ff7b9c,
+                #70c9ff,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lifesteal-hero p {
+            max-width: 720px;
+            margin: 22px auto 0;
+            color: #9ba9c8;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           HEART DISPLAY
+        ========================== */
+
+        .heart-display {
+            max-width: 900px;
+            margin: 30px auto 0;
+
+            padding: 28px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #35182b,
+                    #0b101f 60%,
+                    #080c17
+                );
+
+            border: 1px solid #5a3151;
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 50px rgba(255, 70, 120, 0.05);
+        }
+
+        .hearts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+
+            margin-bottom: 18px;
+        }
+
+        .heart {
+            font-size: 31px;
+            filter: drop-shadow(0 0 7px rgba(255, 60, 100, 0.35));
+        }
+
+        .heart-display strong {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .heart-display span {
+            color: #8f9db9;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTENT
+        ========================== */
+
+        .lifesteal-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 20px 24px 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin: 70px 0 35px;
+        }
+
+        .section-heading .small {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 9px 0 10px;
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .section-heading p {
+            max-width: 680px;
+            margin: auto;
+            color: #8f9db9;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           INFO GRID
+        ========================== */
+
+        .lifesteal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+        }
+
+        .lifesteal-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 26px;
+            min-height: 205px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101a32,
+                    #080d19
+                );
+
+            border: 1px solid #293c63;
+            border-radius: 20px;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .lifesteal-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            top: -75px;
+            right: -65px;
+
+            background: #ff477322;
+            border-radius: 50%;
+
+            filter: blur(4px);
+        }
+
+        .lifesteal-card:hover {
+            transform: translateY(-6px);
+            border-color: #714563;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            position: relative;
+            z-index: 1;
+
+            width: 57px;
+            height: 57px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 28px;
+
+            border-radius: 15px;
+
+            background: #15172a;
+            border: 1px solid #4c3451;
+
+            margin-bottom: 18px;
+        }
+
+        .lifesteal-card h3 {
+            position: relative;
+            z-index: 1;
+
+            margin: 0 0 9px;
+
+            color: #ffffff;
+            font-size: 19px;
+        }
+
+        .lifesteal-card p {
+            position: relative;
+            z-index: 1;
+
+            margin: 0;
+
+            color: #919fba;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .step-card {
+            position: relative;
+
+            padding: 30px;
+
+            background: #0a1020;
+            border: 1px solid #25385e;
+            border-radius: 20px;
+        }
+
+        .step-number {
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: #ffffff;
+            font-weight: 950;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4773,
+                    #754cff
+                );
+
+            margin-bottom: 18px;
+        }
+
+        .step-card h3 {
+            margin: 0 0 9px;
+            color: #ffffff;
+        }
+
+        .step-card p {
+            margin: 0;
+            color: #8d9bb7;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           GAMEPLAY PANELS
+        ========================== */
+
+        .gameplay-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .gameplay-panel {
+            padding: 31px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101b34,
+                    #080d19
+                );
+
+            border: 1px solid #29436e;
+            border-radius: 22px;
+        }
+
+        .gameplay-panel h3 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: 25px;
+        }
+
+        .gameplay-panel p {
+            color: #919fba;
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .gameplay-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gameplay-list li {
+            display: flex;
+            gap: 10px;
+
+            color: #c4d1e8;
+
+            margin-bottom: 11px;
+            line-height: 1.5;
+        }
+
+        .gameplay-list li span {
+            color: #70c9ff;
+            font-weight: 900;
+        }
+
+        /* =========================
+           IMPORTANT NOTE
+        ========================== */
+
+        .note-box {
+            margin-top: 22px;
+
+            padding: 23px 25px;
+
+            border: 1px solid #3c426b;
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #12172d,
+                    #0a0e1b
+                );
+        }
+
+        .note-box strong {
+            display: block;
+
+            color: #ffffff;
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+        .note-box p {
+            margin: 0;
+
+            color: #8e9cb7;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .lifesteal-cta {
+            max-width: 1000px;
+            margin: 75px auto 0;
+
+            padding: 48px 30px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0,
+                    #361a34,
+                    #0c1222 58%,
+                    #080d18
+                );
+
+            border: 1px solid #4d365e;
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .lifesteal-cta h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .lifesteal-cta p {
+            max-width: 620px;
+
+            margin: 0 auto 25px;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 900;
+
+            background: #101a31;
+            border: 1px solid #315b99;
+
+            transition: 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            border-color: #6597d2;
+        }
+
+        .cta-button.primary {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4773,
+                    #754cff
+                );
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .site-footer {
+            margin-top: 90px;
+
+            background: #04060c;
+            border-top: 1px solid #182541;
+        }
+
+        .footer-container {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 55px 24px 25px;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand h2 span {
+            color: #39a8ff;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+
+            color: #71809d;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 15px;
+
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #71809d;
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #70c9ff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 20px 24px 25px;
+
+            border-top: 1px solid #121d33;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            color: #596a89;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: #70c9ff;
+            text-decoration: none;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 950px) {
+
+            .lifesteal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .gameplay-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .lifesteal-hero {
+                padding-top: 65px;
+            }
+
+            .lifesteal-hero p {
+                font-size: 16px;
+            }
+
+            .lifesteal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heart {
+                font-size: 25px;
+            }
+
+            .lifesteal-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .lifesteal-hero {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .gameplay-panel {
+                padding: 24px;
+            }
+
+            .lifesteal-cta {
+                padding: 35px 22px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="lifesteal-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Open navigation"
+                onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="mainNav">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html" class="active">
+                    Lifesteal
+                </a>
+
+                <a href="economy.html">
+                    Economy
+                </a>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="lifesteal-hero">
+
+            <div class="lifesteal-eyebrow">
+                NEXORA SMP • SURVIVAL SYSTEM
+            </div>
+
+            <h1>LIFESTEAL</h1>
+
+            <p>
+                Build your world, protect your progress and experience
+                Nexora's heart-based survival gameplay with your
+                friends and community.
+            </p>
+
+
+            <div class="heart-display">
+
+                <div class="hearts">
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                    <span class="heart">❤️</span>
+                </div>
+
+                <strong>
+                    YOUR SURVIVAL. YOUR PROGRESSION.
+                </strong>
+
+                <br>
+
+                <span>
+                    Every player builds their own Nexora story.
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <section class="lifesteal-container">
+
+
+            <!-- =========================
+                 CORE SYSTEM
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    CORE SYSTEM
+                </div>
+
+                <h2>How Lifesteal Works</h2>
+
+                <p>
+                    Nexora's Lifesteal experience connects survival,
+                    progression and player interaction through a
+                    heart-based system.
+                </p>
+
+            </div>
+
+
+            <div class="lifesteal-grid">
+
+                <div class="lifesteal-card">
+
+                    <div class="card-icon">
+                        ❤️
+                    </div>
+
+                    <h3>Heart System</h3>
+
+                    <p>
+                        Hearts are an important part of the Nexora
+                        survival progression system.
+                    </p>
+
+                </div>
+
+
+                <div class="lifesteal-card">
+
+                    <div class="card-icon">
+                        📈
+                    </div>
+
+                    <h3>Progression</h3>
+
+                    <p>
+                        Your survival journey develops as you play,
+                        explore and progress through the server.
+                    </p>
+
+                </div>
+
+
+                <div class="lifesteal-card">
+
+                    <div class="card-icon">
+                        🏠
+                    </div>
+
+                    <h3>Build Your Base</h3>
+
+                    <p>
+                        Create a base, organize your resources and
+                        build a place for your team.
+                    </p>
+
+                </div>
+
+
+                <div class="lifesteal-card">
+
+                    <div class="card-icon">
+                        👥
+                    </div>
+
+                    <h3>Play Together</h3>
+
+                    <p>
+                        Team up with friends and create your own
+                        community within Nexora.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HOW IT WORKS
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    YOUR JOURNEY
+                </div>
+
+                <h2>Start Your Survival</h2>
+
+                <p>
+                    Build your progression step by step and make
+                    Nexora your own.
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>Join Nexora</h3>
+
+                    <p>
+                        Connect to the server and begin your
+                        survival journey.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>Build & Explore</h3>
+
+                    <p>
+                        Gather resources, explore the world and
+                        create your own base.
+                    </p>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>Grow Your Progress</h3>
+
+                    <p>
+                        Develop your survival progression and
+                        build a stronger community.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 GAMEPLAY
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    SURVIVAL EXPERIENCE
+                </div>
+
+                <h2>Make Your Own Story</h2>
+
+                <p>
+                    Nexora is designed to give players freedom to
+                    decide how they want to play and progress.
+                </p>
+
+            </div>
+
+
+            <div class="gameplay-grid">
+
+                <div class="gameplay-panel">
+
+                    <h3>🏠 Build & Survive</h3>
+
+                    <p>
+                        Create your own base, collect resources and
+                        develop your survival world.
+                    </p>
+
+                    <ul class="gameplay-list">
+
+                        <li>
+                            <span>✓</span>
+                            Build your own base
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Explore the world
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Collect resources
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Grow your progression
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="gameplay-panel">
+
+                    <h3>👥 Team Up</h3>
+
+                    <p>
+                        Survival becomes a community experience when
+                        you play together with trusted teammates.
+                    </p>
+
+                    <ul class="gameplay-list">
+
+                        <li>
+                            <span>✓</span>
+                            Create a team
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Build together
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Share resources
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Grow your community
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NOTE
+            ========================== -->
+
+            <div class="note-box">
+
+                <strong>
+                    ℹ️ Nexora Lifesteal
+                </strong>
+
+                <p>
+                    Exact heart values, progression rules and other
+                    server mechanics are controlled by the current
+                    Nexora server configuration. This page describes
+                    the overall Lifesteal experience rather than
+                    hard-coding server values that may change.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CTA
+            ========================== -->
+
+            <section class="lifesteal-cta">
+
+                <h2>
+                    Ready For The Journey?
+                </h2>
+
+                <p>
+                    Join Nexora SMP and start building your own
+                    survival story with the community.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                        href="index.html"
+                        class="cta-button primary">
+                        🌐 Join Nexora
+                    </a>
+
+                    <a
+                        href="features.html"
+                        class="cta-button">
+                        ⚙️ View Features
+                    </a>
+
+                    <a
+                        href="https://discord.gg/vSGXupYJG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cta-button">
+                        💬 Join Discord
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    NEXORA <span>SMP</span>
+                </h2>
+
+                <p>
+                    Java + Bedrock Lifesteal survival server
+                    built around progression, economy, teams
+                    and community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html">Lifesteal</a>
+
+                <a href="economy.html">Economy</a>
+
+                <a href="teams.html">Teams</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Server</h3>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Community</h3>
+
+                <a
+                    href="https://discord.gg/vSGXupYJG"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Discord
+                </a>
+
+                <a
+                    href="https://youtube.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a href="login.html">
+                    Player Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NEXORA SMP. All rights reserved.
+            </span>
+
+            <span>
+                Java + Bedrock • Lifesteal
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     MOBILE NAVIGATION
+========================== -->
+
+<script>
+
+function toggleMenu() {
+
+    const nav = document.getElementById("mainNav");
+
+    if (!nav) return;
+
+    nav.classList.toggle("active");
+
+}
+
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        const nav = document.getElementById("mainNav");
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | Server Status</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* =========================================================
+           NEXORA STATUS PAGE
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+
+        .status-page {
+            width: 100%;
+            min-height: calc(100vh - 80px);
+            padding: 70px 20px 90px;
+        }
+
+        .status-container {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HERO
+           ========================= */
+
+        .status-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .status-eyebrow {
+            color: #69bdff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .status-header h1 {
+            margin: 0;
+            font-size: clamp(40px, 7vw, 72px);
+            line-height: 1.05;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #6bc6ff,
+                #9d7aff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .status-header p {
+            max-width: 680px;
+            margin: 18px auto 0;
+            color: #9ba9c8;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           MAIN GRID
+           ========================= */
+
+        .status-main-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* =========================
+           COMMON CARD
+           ========================= */
+
+        .status-box {
+            width: 100%;
+            min-width: 0;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 26, 52, 0.98),
+                    rgba(7, 12, 24, 0.98)
+                );
+
+            border: 1px solid #263f6d;
+            border-radius: 22px;
+            padding: 28px;
+
+            box-shadow:
+                0 18px 55px rgba(0, 0, 0, 0.35);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-box::before {
+            content: "";
+            position: absolute;
+
+            width: 240px;
+            height: 240px;
+
+            top: -120px;
+            left: -100px;
+
+            background: rgba(35, 145, 255, 0.13);
+            border-radius: 50%;
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+        .status-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           STATUS HEADER
+           ========================= */
+
+        .status-live {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #8bbfff;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .status-indicator {
+            width: 11px;
+            height: 11px;
+
+            flex: 0 0 11px;
+
+            border-radius: 50%;
+
+            background: #777;
+
+            transition: 0.25s;
+        }
+
+        .status-indicator.online {
+            background: #35e58a;
+
+            box-shadow:
+                0 0 8px #35e58a,
+                0 0 20px rgba(53, 229, 138, 0.55);
+        }
+
+        .status-indicator.offline {
+            background: #ff4f67;
+
+            box-shadow:
+                0 0 8px #ff4f67,
+                0 0 20px rgba(255, 79, 103, 0.45);
+        }
+
+        .status-box h2 {
+            margin: 15px 0 7px;
+
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.1;
+        }
+
+        .server-description {
+            margin: 0;
+
+            color: #94a4c3;
+
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PLAYER COUNT
+           ========================= */
+
+        .player-count {
+            margin-top: 28px;
+
+            font-size: clamp(42px, 6vw, 64px);
+            font-weight: 900;
+
+            line-height: 1;
+        }
+
+        .player-count span {
+            font-size: 14px;
+            font-weight: 700;
+
+            color: #7d8ca9;
+        }
+
+        /* =========================
+           META
+           ========================= */
+
+        .status-meta {
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-top: 28px;
+        }
+
+        .meta-box {
+            min-width: 0;
+
+            background: rgba(3, 8, 18, 0.75);
+
+            border: 1px solid #1e335a;
+
+            border-radius: 14px;
+
+            padding: 15px;
+        }
+
+        .meta-label {
+            color: #71809d;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 7px;
+        }
+
+        .meta-value {
+            color: #e3edff;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            word-break: break-word;
+        }
+
+        /* =========================
+           SERVER INFORMATION
+           ========================= */
+
+        .box-title {
+            margin: 0 0 18px;
+
+            font-size: 18px;
+            font-weight: 900;
+
+            letter-spacing: 0.5px;
+        }
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .info-item {
+            min-width: 0;
+
+            background: rgba(3, 8, 18, 0.75);
+
+            border: 1px solid #1e335a;
+
+            border-radius: 14px;
+
+            padding: 17px;
+        }
+
+        .info-label {
+            color: #71809d;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            margin-top: 7px;
+
+            color: #e1ebff;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            word-break: break-word;
+        }
+
+        /* =========================
+           COPY BUTTON
+           ========================= */
+
+        .copy-button {
+            width: 100%;
+
+            margin-top: 14px;
+
+            padding: 13px 16px;
+
+            border: 1px solid #315b9b;
+            border-radius: 12px;
+
+            background: #0d1931;
+
+            color: #b9dcff;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .copy-button:hover {
+            background: #142748;
+            border-color: #4b8ce0;
+            transform: translateY(-1px);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           ONLINE PLAYERS
+           ========================= */
+
+        .players-section {
+            margin-top: 22px;
+        }
+
+        .players-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+        .players-header h3 {
+            margin: 0;
+
+            font-size: 21px;
+        }
+
+        .refresh-label {
+            color: #71809d;
+
+            font-size: 12px;
+        }
+
+        .players-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .player-card {
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 15px;
+
+            background: #0a1020;
+
+            border: 1px solid #20365e;
+
+            border-radius: 15px;
+
+            transition: 0.2s;
+        }
+
+        .player-card:hover {
+            border-color: #3769aa;
+
+            transform: translateY(-2px);
+        }
+
+        .player-avatar {
+            width: 42px;
+            height: 42px;
+
+            flex: 0 0 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .player-details {
+            min-width: 0;
+        }
+
+        .player-name {
+            color: #edf4ff;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .player-status {
+            margin-top: 3px;
+
+            color: #35d98a;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           EMPTY PLAYER LIST
+           ========================= */
+
+        .empty-players {
+            grid-column: 1 / -1;
+
+            padding: 32px 20px;
+
+            text-align: center;
+
+            color: #7d8ca8;
+
+            background: #0a1020;
+
+            border: 1px dashed #29436e;
+
+            border-radius: 16px;
+        }
+
+        /* =========================
+           API NOTICE
+           ========================= */
+
+        .api-notice {
+            margin-top: 20px;
+
+            padding: 17px 19px;
+
+            background: rgba(10, 16, 32, 0.9);
+
+            border: 1px solid #293f68;
+
+            border-radius: 15px;
+
+            color: #8f9db9;
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+        .api-notice strong {
+            color: #b9dfff;
+        }
+
+        .api-notice code {
+            color: #7bcaff;
+
+            background: #050912;
+
+            padding: 2px 6px;
+
+            border-radius: 5px;
+        }
+
+        /* =========================
+           FOOTER
+           ========================= */
+
+        .status-footer {
+            margin-top: 45px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #182541;
+
+            text-align: center;
+
+            color: #71809d;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           NAV OVERRIDES
+           ========================= */
+
+        .navbar,
+        .nav-container {
+            min-width: 0;
+        }
+
+        .nav-links {
+            min-width: 0;
+        }
+
+        /* =========================
+           MOBILE
+           ========================= */
+
+        @media (max-width: 900px) {
+
+            .status-main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .status-page {
+                padding:
+                    50px 15px 65px;
+            }
+
+            .status-header {
+                margin-bottom: 30px;
+            }
+
+            .status-box {
+                padding: 21px;
+                border-radius: 18px;
+            }
+
+            .status-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .status-header h1 {
+                font-size: 39px;
+            }
+
+            .status-header p {
+                font-size: 14px;
+            }
+
+            .player-count {
+                font-size: 48px;
+            }
+
+            .status-box h2 {
+                font-size: 31px;
+            }
+        }
+
+        /* =========================
+           ACCESSIBILITY
+           ========================= */
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #62bdff;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+         ========================================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html">Lifesteal</a>
+
+                <a href="economy.html">Economy</a>
+
+                <a href="teams.html">Teams</a>
+
+                <a href="leaderboard.html">Leaderboard</a>
+
+                <a href="players.html">Players</a>
+
+                <a href="status.html" class="active">
+                    Status
+                </a>
+
+                <a href="rules.html">Rules</a>
+
+                <a href="vote.html">Vote</a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         STATUS PAGE
+         ========================================================= -->
+
+    <main class="status-page">
+
+        <div class="status-container">
+
+
+            <!-- =========================
+                 PAGE HEADER
+                 ========================= -->
+
+            <section class="status-header">
+
+                <div class="status-eyebrow">
+                    NEXORA NETWORK
+                </div>
+
+                <h1>
+                    SERVER STATUS
+                </h1>
+
+                <p>
+                    Check the current Nexora SMP server status,
+                    player count, connection information and
+                    online players.
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 MAIN STATUS GRID
+                 ========================= -->
+
+            <section class="status-main-grid">
+
+
+                <!-- =========================
+                     SERVER STATUS
+                     ========================= -->
+
+                <div class="status-box">
+
+                    <div class="status-live">
+
+                        <span
+                            class="status-indicator"
+                            id="statusIndicator"
+                        ></span>
+
+                        <span id="statusText">
+                            Checking server...
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Nexora SMP
+                    </h2>
+
+
+                    <p class="server-description">
+                        Java + Bedrock • Lifesteal Survival
+                    </p>
+
+
+                    <div
+                        class="player-count"
+                        id="playerCount"
+                    >
+                        --
+                        <span>
+                            players online
+                        </span>
+                    </div>
+
+
+                    <div class="status-meta">
+
+                        <div class="meta-box">
+
+                            <div class="meta-label">
+                                Network Response
+                            </div>
+
+                            <div
+                                class="meta-value"
+                                id="latency"
+                            >
+                                -- ms
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta-box">
+
+                            <div class="meta-label">
+                                Server Address
+                            </div>
+
+                            <div class="meta-value">
+                                play.nexorasmp.2bd.net
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SERVER INFORMATION
+                     ========================= -->
+
+                <div class="status-box">
+
+                    <h3 class="box-title">
+                        Server Information
+                    </h3>
+
+
+                    <div class="info-grid">
+
+                        <div class="info-item">
+
+                            <div class="info-label">
+                                Edition
+                            </div>
+
+                            <div class="info-value">
+                                Java + Bedrock
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-label">
+                                Game Mode
+                            </div>
+
+                            <div class="info-value">
+                                Lifesteal
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-label">
+                                Version
+                            </div>
+
+                            <div
+                                class="info-value"
+                                id="serverVersion"
+                            >
+                                Loading...
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-label">
+                                Status
+                            </div>
+
+                            <div
+                                class="info-value"
+                                id="infoStatus"
+                            >
+                                Checking...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="copy-button"
+                        id="copyButton"
+                        type="button"
+                    >
+                        📋 Copy Server IP
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 ONLINE PLAYERS
+                 ========================= -->
+
+            <section class="players-section">
+
+                <div class="players-header">
+
+                    <h3>
+                        Online Players
+                    </h3>
+
+                    <span
+                        class="refresh-label"
+                        id="refreshText"
+                    >
+                        Updating...
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="players-grid"
+                    id="playersGrid"
+                >
+
+                    <div class="empty-players">
+                        Loading player list...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 API NOTICE
+                 ========================= -->
+
+            <div class="api-notice">
+
+                <strong>
+                    Live server data:
+                </strong>
+
+                This page is ready for the Nexora Python
+                backend. Once
+                <code>/api/server</code>
+                is connected, server status, player count,
+                latency, version and player names will update
+                automatically.
+
+            </div>
+
+
+            <!-- =========================
+                 FOOTER
+                 ========================= -->
+
+            <footer class="status-footer">
+
+                NEXORA SMP
+                •
+                Java + Bedrock
+                •
+                Lifesteal Survival
+
+                <br><br>
+
+                © 2026 Nexora SMP. All rights reserved.
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================
+           MOBILE MENU
+           ========================================= */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuBtn && navLinks) {
+
+            menuBtn.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        navLinks.classList.toggle("active");
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        opened ? "true" : "false"
+                    );
+
+                }
+            );
+
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =========================================
+           COPY SERVER IP
+           ========================================= */
+
+        const SERVER_IP =
+            "play.nexorasmp.2bd.net";
+
+
+        const copyButton =
+            document.getElementById("copyButton");
+
+
+        if (copyButton) {
+
+            copyButton.addEventListener(
+                "click",
+                async function () {
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            SERVER_IP
+                        );
+
+                        const oldText =
+                            copyButton.textContent;
+
+                        copyButton.textContent =
+                            "✅ IP Copied!";
+
+                        setTimeout(
+                            function () {
+
+                                copyButton.textContent =
+                                    oldText;
+
+                            },
+                            1800
+                        );
+
+                    } catch (error) {
+
+                        alert(
+                            "Server IP: " + SERVER_IP
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           SAFE TEXT
+           ========================================= */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =========================================
+           GET PLAYER LIST
+           ========================================= */
+
+        function getPlayerList(data) {
+
+            if (
+                data &&
+                data.players &&
+                Array.isArray(data.players.list)
+            ) {
+
+                return data.players.list;
+
+            }
+
+
+            if (
+                data &&
+                Array.isArray(data.players_list)
+            ) {
+
+                return data.players_list;
+
+            }
+
+
+            if (
+                data &&
+                Array.isArray(data.online_players)
+            ) {
+
+                return data.online_players;
+
+            }
+
+
+            return [];
+
+        }
+
+
+        /* =========================================
+           GET PLAYER COUNT
+           ========================================= */
+
+        function getPlayerCount(data) {
+
+            if (
+                data &&
+                data.players &&
+                typeof data.players.online !== "undefined"
+            ) {
+
+                return data.players.online;
+
+            }
+
+
+            if (
+                data &&
+                typeof data.player_count !== "undefined"
+            ) {
+
+                return data.player_count;
+
+            }
+
+
+            if (
+                data &&
+                typeof data.players_online !== "undefined"
+            ) {
+
+                return data.players_online;
+
+            }
+
+
+            return 0;
+
+        }
+
+
+        /* =========================================
+           SERVER STATUS
+           ========================================= */
+
+        async function loadServerStatus() {
+
+            const indicator =
+                document.getElementById(
+                    "statusIndicator"
+                );
+
+            const statusText =
+                document.getElementById(
+                    "statusText"
+                );
+
+            const infoStatus =
+                document.getElementById(
+                    "infoStatus"
+                );
+
+            const playerCount =
+                document.getElementById(
+                    "playerCount"
+                );
+
+            const latency =
+                document.getElementById(
+                    "latency"
+                );
+
+            const serverVersion =
+                document.getElementById(
+                    "serverVersion"
+                );
+
+            const playersGrid =
+                document.getElementById(
+                    "playersGrid"
+                );
+
+            const refreshText =
+                document.getElementById(
+                    "refreshText"
+                );
+
+
+            try {
+
+                refreshText.textContent =
+                    "Connecting...";
+
+
+                const startTime =
+                    performance.now();
+
+
+                const response =
+                    await fetch(
+                        "/api/server",
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "API returned " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                const responseTime =
+                    Math.round(
+                        performance.now() -
+                        startTime
+                    );
+
+
+                const online =
+                    data.online === true ||
+                    data.status === "online" ||
+                    data.status === "Online";
+
+
+                /* =========================
+                   STATUS
+                   ========================= */
+
+                indicator.classList.remove(
+                    "online",
+                    "offline"
+                );
+
+
+                if (online) {
+
+                    indicator.classList.add(
+                        "online"
+                    );
+
+                    statusText.textContent =
+                        "Server Online";
+
+                    infoStatus.textContent =
+                        "Online";
+
+                } else {
+
+                    indicator.classList.add(
+                        "offline"
+                    );
+
+                    statusText.textContent =
+                        "Server Offline";
+
+                    infoStatus.textContent =
+                        "Offline";
+
+                }
+
+
+                /* =========================
+                   PLAYER COUNT
+                   ========================= */
+
+                const count =
+                    getPlayerCount(data);
+
+
+                playerCount.innerHTML =
+                    escapeHTML(count) +
+                    ' <span>players online</span>';
+
+
+                /* =========================
+                   LATENCY
+                   ========================= */
+
+                const serverLatency =
+                    data.latency ??
+                    data.ping ??
+                    responseTime;
+
+
+                latency.textContent =
+                    escapeHTML(serverLatency) +
+                    " ms";
+
+
+                /* =========================
+                   VERSION
+                   ========================= */
+
+                serverVersion.textContent =
+                    data.version ??
+                    data.server_version ??
+                    "Nexora SMP";
+
+
+                /* =========================
+                   PLAYERS
+                   ========================= */
+
+                const players =
+                    getPlayerList(data);
+
+
+                if (!players.length) {
+
+                    playersGrid.innerHTML = `
+                        <div class="empty-players">
+                            ${
+                                online
+                                ? "No players are currently online."
+                                : "Server is currently offline."
+                            }
+                        </div>
+                    `;
+
+                } else {
+
+                    playersGrid.innerHTML =
+                        players
+                            .map(function (player) {
+
+                                const name =
+                                    typeof player === "string"
+                                    ? player
+                                    : (
+                                        player.name ??
+                                        player.username ??
+                                        "Unknown Player"
+                                    );
+
+
+                                const firstLetter =
+                                    escapeHTML(
+                                        name
+                                            .charAt(0)
+                                            .toUpperCase()
+                                    );
+
+
+                                return `
+                                    <div class="player-card">
+
+                                        <div class="player-avatar">
+                                            ${firstLetter}
+                                        </div>
+
+                                        <div class="player-details">
+
+                                            <div class="player-name">
+                                                ${escapeHTML(name)}
+                                            </div>
+
+                                            <div class="player-status">
+                                                ● Online
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                `;
+
+                            })
+                            .join("");
+
+                }
+
+
+                refreshText.textContent =
+                    "Updated just now";
+
+            } catch (error) {
+
+                console.error(
+                    "Nexora Status API Error:",
+                    error
+                );
+
+
+                indicator.classList.remove(
+                    "online"
+                );
+
+                indicator.classList.add(
+                    "offline"
+                );
+
+
+                statusText.textContent =
+                    "Backend Offline";
+
+
+                infoStatus.textContent =
+                    "API Offline";
+
+
+                playerCount.innerHTML =
+                    '-- <span>players online</span>';
+
+
+                latency.textContent =
+                    "-- ms";
+
+
+                serverVersion.textContent =
+                    "Waiting for API";
+
+
+                playersGrid.innerHTML = `
+                    <div class="empty-players">
+                        Live player data will appear
+                        when the Nexora Python backend
+                        is connected.
+                    </div>
+                `;
+
+
+                refreshText.textContent =
+                    "Waiting for backend";
+
+            }
+
+        }
+
+
+        /* =========================================
+           INITIAL LOAD
+           ========================================= */
+
+        loadServerStatus();
+
+
+        /* =========================================
+           AUTO REFRESH
+           ========================================= */
+
+        setInterval(
+            loadServerStatus,
+            15000
+        );
+
+    </script>
+
+</body>
+</html>

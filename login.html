@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP - Login</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* ================================
+           NEXORA LOGIN PAGE
+        ================================= */
+
+        .login-page {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px 80px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1050px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        /* LEFT SIDE */
+
+        .login-info {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(57, 168, 255, 0.18),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    145deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #294b7d;
+            border-radius: 24px;
+            padding: 38px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .login-info::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            top: -120px;
+            right: -120px;
+            background: rgba(57, 168, 255, 0.10);
+            border-radius: 50%;
+            filter: blur(10px);
+        }
+
+        .login-info-badge {
+            display: inline-block;
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .login-info h1 {
+            position: relative;
+            font-size: clamp(38px, 5vw, 58px);
+            margin: 0 0 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #70c9ff,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .login-info-description {
+            position: relative;
+            color: #9ba9c8;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .login-feature-list {
+            position: relative;
+            display: grid;
+            gap: 12px;
+        }
+
+        .login-feature {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            padding: 15px;
+
+            background: rgba(5, 10, 21, 0.75);
+            border: 1px solid #1d3156;
+            border-radius: 14px;
+        }
+
+        .login-feature-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            font-size: 20px;
+        }
+
+        .login-feature-text strong {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+
+        .login-feature-text span {
+            color: #7788a7;
+            font-size: 13px;
+        }
+
+        /* LOGIN CARD */
+
+        .login-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #2a4d82;
+            border-radius: 24px;
+
+            padding: 38px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .login-card-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .login-card-badge {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .login-card h2 {
+            font-size: 32px;
+            margin: 10px 0 8px;
+        }
+
+        .login-card-subtitle {
+            color: #8797b5;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* FORM */
+
+        .login-field {
+            margin-top: 19px;
+        }
+
+        .login-field label {
+            display: block;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .login-field input {
+            width: 100%;
+            height: 50px;
+
+            padding: 0 15px;
+
+            background: #050812;
+            color: #ffffff;
+
+            border: 1px solid #29456f;
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+        .login-field input::placeholder {
+            color: #586984;
+        }
+
+        .login-field input:focus {
+            border-color: #39a8ff;
+
+            box-shadow:
+                0 0 0 3px rgba(57, 168, 255, 0.12);
+        }
+
+        /* PASSWORD */
+
+        .password-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .password-wrapper input {
+            flex: 1;
+        }
+
+        .show-password {
+            flex-shrink: 0;
+
+            min-width: 72px;
+
+            border: 1px solid #29456f;
+            border-radius: 12px;
+
+            background: #101a31;
+            color: #a9cfff;
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+        .show-password:hover {
+            border-color: #39a8ff;
+            color: #ffffff;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-button {
+            width: 100%;
+            min-height: 52px;
+
+            margin-top: 25px;
+
+            border: 0;
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 900;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                opacity 0.2s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(22, 143, 255, 0.25);
+        }
+
+        .login-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* SECURITY NOTICE */
+
+        .security-box {
+            margin-top: 22px;
+
+            padding: 17px;
+
+            background: #080f20;
+
+            border: 1px solid #29436e;
+            border-radius: 14px;
+
+            color: #9ba9c8;
+
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .security-box strong {
+            color: #ffffff;
+        }
+
+        .security-title {
+            color: #8bc8ff;
+            font-weight: 900;
+
+            display: block;
+
+            margin-bottom: 5px;
+        }
+
+        /* ERROR */
+
+        .login-error {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 13px 15px;
+
+            background: #24101a;
+
+            border: 1px solid #6b3341;
+            border-radius: 12px;
+
+            color: #ffb8c5;
+
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* LOADING */
+
+        .login-loading {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #8bbcff;
+
+            font-size: 13px;
+        }
+
+        /* FOOTNOTE */
+
+        .login-footnote {
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #61718e;
+
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .login-container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+
+            .login-info {
+                padding: 30px;
+            }
+
+            .login-info h1 {
+                font-size: 46px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .login-page {
+                padding: 35px 15px 55px;
+            }
+
+            .login-info,
+            .login-card {
+                padding: 24px 18px;
+                border-radius: 20px;
+            }
+
+            .login-info h1 {
+                font-size: 38px;
+            }
+
+            .login-card h2 {
+                font-size: 27px;
+            }
+
+            .password-wrapper {
+                display: block;
+            }
+
+            .show-password {
+                width: 100%;
+                height: 44px;
+                margin-top: 8px;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .login-info h1 {
+                font-size: 32px;
+            }
+
+            .login-feature {
+                padding: 12px;
+            }
+
+            .login-feature-icon {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .login-button,
+            .login-field input {
+                transition: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="features.html">
+                    Features
+                </a>
+
+                <a href="lifesteal.html">
+                    Lifesteal
+                </a>
+
+                <a href="economy.html">
+                    Economy
+                </a>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a
+                    href="login.html"
+                    class="login-btn active"
+                >
+                    Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         LOGIN PAGE
+    ================================= -->
+
+    <main class="login-page">
+
+        <div class="login-container">
+
+
+            <!-- LEFT INFORMATION -->
+
+            <section class="login-info">
+
+                <div class="login-info-badge">
+                    NEXORA AUTHENTICATION
+                </div>
+
+                <h1>
+                    Welcome<br>
+                    Back.
+                </h1>
+
+                <p class="login-info-description">
+                    Login to your Nexora web account using
+                    the same Minecraft player name and
+                    password that you use on the Nexora SMP
+                    server.
+                </p>
+
+
+                <div class="login-feature-list">
+
+
+                    <div class="login-feature">
+
+                        <div class="login-feature-icon">
+                            👤
+                        </div>
+
+                        <div class="login-feature-text">
+
+                            <strong>
+                                Minecraft Name
+                            </strong>
+
+                            <span>
+                                Your in-game player name is your
+                                Nexora website login name.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-feature">
+
+                        <div class="login-feature-icon">
+                            🔐
+                        </div>
+
+                        <div class="login-feature-text">
+
+                            <strong>
+                                Existing Server Password
+                            </strong>
+
+                            <span>
+                                Use the same AuthMe password
+                                you use on the Minecraft server.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-feature">
+
+                        <div class="login-feature-icon">
+                            📊
+                        </div>
+
+                        <div class="login-feature-text">
+
+                            <strong>
+                                Player Dashboard
+                            </strong>
+
+                            <span>
+                                Access your Nexora player
+                                statistics after login.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-feature">
+
+                        <div class="login-feature-icon">
+                            ❤️
+                        </div>
+
+                        <div class="login-feature-text">
+
+                            <strong>
+                                Your Minecraft Data
+                            </strong>
+
+                            <span>
+                                Rank, balance, hearts, stats and
+                                other server information.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- LOGIN CARD -->
+
+            <section class="login-card">
+
+                <div class="login-card-header">
+
+                    <div class="login-card-badge">
+                        NEXORA SMP
+                    </div>
+
+                    <h2>
+                        Player Login
+                    </h2>
+
+                    <p class="login-card-subtitle">
+                        Use your existing Minecraft server
+                        credentials.
+                    </p>
+
+                </div>
+
+
+                <form
+                    id="loginForm"
+                    autocomplete="on"
+                >
+
+
+                    <!-- PLAYER NAME -->
+
+                    <div class="login-field">
+
+                        <label for="playerName">
+                            Minecraft Player Name
+                        </label>
+
+                        <input
+                            id="playerName"
+                            name="username"
+                            type="text"
+                            maxlength="16"
+                            autocomplete="username"
+                            placeholder="Enter your Minecraft name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="login-field">
+
+                        <label for="playerPassword">
+                            Minecraft / AuthMe Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                id="playerPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="current-password"
+                                placeholder="Enter your server password"
+                                required
+                            >
+
+                            <button
+                                class="show-password"
+                                id="showPasswordBtn"
+                                type="button"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        class="login-button"
+                        id="loginButton"
+                        type="submit"
+                    >
+                        🔐 LOGIN TO NEXORA
+                    </button>
+
+
+                    <!-- LOADING -->
+
+                    <div
+                        class="login-loading"
+                        id="loginLoading"
+                    >
+                        Authenticating with Nexora...
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div
+                        class="login-error"
+                        id="loginError"
+                    ></div>
+
+
+                </form>
+
+
+                <!-- SECURITY -->
+
+                <div class="security-box">
+
+                    <span class="security-title">
+                        🔒 One Nexora Account
+                    </span>
+
+                    <strong>
+                        Your Minecraft player name
+                    </strong>
+                    is your Nexora website login name.
+
+                    <br>
+
+                    <strong>
+                        Your existing Minecraft/AuthMe
+                        password
+                    </strong>
+                    is your Nexora website login password.
+
+                    <br><br>
+
+                    There is no separate website account
+                    and no Create Account option.
+
+                </div>
+
+
+                <div class="login-footnote">
+
+                    Your password is sent only to the
+                    Nexora backend for authentication.
+                    This page does not store your password.
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <p>
+            NEXORA SMP • Java + Bedrock •
+            Made for the community
+        </p>
+
+    </footer>
+
+</div>
+
+
+<!-- ================================
+     JAVASCRIPT
+================================= -->
+
+<script>
+
+    /* =================================
+       MOBILE MENU
+    ================================= */
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        function () {
+
+            navLinks.classList.toggle("open");
+
+            const isOpen =
+                navLinks.classList.contains("open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
+
+        }
+    );
+
+
+    /* =================================
+       CLOSE MOBILE MENU
+    ================================= */
+
+    document.querySelectorAll(
+        ".nav-links a"
+    ).forEach(function (link) {
+
+        link.addEventListener(
+            "click",
+            function () {
+
+                navLinks.classList.remove("open");
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =================================
+       ESC CLOSE MENU
+    ================================= */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                navLinks.classList.remove("open");
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =================================
+       SHOW / HIDE PASSWORD
+    ================================= */
+
+    const passwordInput =
+        document.getElementById(
+            "playerPassword"
+        );
+
+    const showPasswordBtn =
+        document.getElementById(
+            "showPasswordBtn"
+        );
+
+
+    showPasswordBtn.addEventListener(
+        "click",
+        function () {
+
+            if (
+                passwordInput.type ===
+                "password"
+            ) {
+
+                passwordInput.type =
+                    "text";
+
+                showPasswordBtn.textContent =
+                    "Hide";
+
+            } else {
+
+                passwordInput.type =
+                    "password";
+
+                showPasswordBtn.textContent =
+                    "Show";
+
+            }
+
+        }
+    );
+
+
+    /* =================================
+       LOGIN
+       
+       Backend endpoint:
+       POST /api/auth/login
+
+       Expected JSON:
+
+       {
+           "player_name": "PlayerName",
+           "password": "MinecraftPassword"
+       }
+
+       Expected success:
+
+       {
+           "success": true
+       }
+
+       Expected failure:
+
+       {
+           "success": false,
+           "message": "Invalid username or password"
+       }
+    ================================= */
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const loginButton =
+        document.getElementById(
+            "loginButton"
+        );
+
+    const loginLoading =
+        document.getElementById(
+            "loginLoading"
+        );
+
+    const loginError =
+        document.getElementById(
+            "loginError"
+        );
+
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const playerName =
+                document.getElementById(
+                    "playerName"
+                ).value.trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            if (!playerName || !password) {
+
+                loginError.textContent =
+                    "Please enter your Minecraft name and password.";
+
+                loginError.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            loginButton.disabled =
+                true;
+
+            loginLoading.style.display =
+                "block";
+
+            loginError.style.display =
+                "none";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/auth/login",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                player_name:
+                                    playerName,
+
+                                password:
+                                    password
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response
+                        .json()
+                        .catch(
+                            () => ({})
+                        );
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Invalid Minecraft name or password."
+                    );
+
+                }
+
+
+                /*
+                 * Store only the player name.
+                 *
+                 * NEVER store the Minecraft/AuthMe
+                 * password in localStorage/sessionStorage.
+                 */
+
+                sessionStorage.setItem(
+                    "nexora_player",
+                    playerName
+                );
+
+
+                /* Go to player dashboard */
+
+                window.location.href =
+                    "my_account.html";
+
+
+            } catch (error) {
+
+                loginError.textContent =
+                    error.message ||
+                    "Login failed. Please try again.";
+
+                loginError.style.display =
+                    "block";
+
+            } finally {
+
+                loginButton.disabled =
+                    false;
+
+                loginLoading.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

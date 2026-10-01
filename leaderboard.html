@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | Leaderboard</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+
+        .leaderboard-page {
+            width: 100%;
+            min-height: calc(100vh - 80px);
+            padding: 70px 20px 90px;
+        }
+
+        .leaderboard-container {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .leaderboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .eyebrow {
+            color: #69bdff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .leaderboard-header h1 {
+            margin: 0;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #6bc6ff,
+                #9d7aff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .leaderboard-header p {
+            max-width: 700px;
+            margin: 18px auto 0;
+            color: #9ba9c8;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* =========================
+           CATEGORY BUTTONS
+        ========================= */
+
+        .leaderboard-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .tab-button {
+            border: 1px solid #294570;
+            background: #0a1020;
+            color: #93a3c2;
+            padding: 11px 17px;
+            border-radius: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .tab-button:hover {
+            border-color: #4389d3;
+            color: #dcecff;
+        }
+
+        .tab-button.active {
+            border-color: transparent;
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+        }
+
+        /* =========================
+           MAIN PANEL
+        ========================= */
+
+        .leaderboard-panel {
+            width: 100%;
+            min-width: 0;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,26,52,.98),
+                    rgba(7,12,24,.98)
+                );
+
+            border: 1px solid #263f6d;
+            border-radius: 22px;
+            padding: 25px;
+
+            box-shadow:
+                0 18px 55px rgba(0,0,0,.35);
+
+            overflow: hidden;
+        }
+
+        .leaderboard-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard-top h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .update-text {
+            color: #71809d;
+            font-size: 12px;
+        }
+
+        /* =========================
+           TOP THREE
+        ========================= */
+
+        .top-three {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+
+        .top-card {
+            min-width: 0;
+            padding: 22px;
+            text-align: center;
+
+            background: #080e1b;
+            border: 1px solid #243b65;
+            border-radius: 18px;
+        }
+
+        .top-card.first {
+            border-color: #527cb3;
+        }
+
+        .medal {
+            font-size: 34px;
+            margin-bottom: 9px;
+        }
+
+        .top-avatar {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 11px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .top-name {
+            color: #edf4ff;
+            font-size: 16px;
+            font-weight: 900;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .top-score {
+            margin-top: 6px;
+            color: #70c7ff;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+
+            border: 1px solid #20365e;
+            border-radius: 16px;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th {
+            padding: 15px 16px;
+
+            text-align: left;
+
+            color: #7283a1;
+            background: #080e1b;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            border-bottom: 1px solid #20365e;
+        }
+
+        .leaderboard-table td {
+            padding: 15px 16px;
+
+            color: #dce8fb;
+
+            border-bottom: 1px solid #172a4b;
+
+            font-size: 14px;
+        }
+
+        .leaderboard-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .leaderboard-table tbody tr {
+            background: #0a1020;
+            transition: .2s;
+        }
+
+        .leaderboard-table tbody tr:hover {
+            background: #0d172a;
+        }
+
+        .rank-number {
+            width: 60px;
+            font-weight: 900;
+            color: #91a4c4;
+        }
+
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 170px;
+        }
+
+        .player-avatar {
+            width: 38px;
+            height: 38px;
+
+            flex: 0 0 38px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+            font-weight: 900;
+        }
+
+        .player-name {
+            color: #edf4ff;
+            font-weight: 900;
+        }
+
+        .player-rank {
+            margin-top: 3px;
+            color: #71809d;
+            font-size: 11px;
+        }
+
+        .score {
+            color: #78caff;
+            font-weight: 900;
+        }
+
+        .positive {
+            color: #43e59a;
+            font-weight: 800;
+        }
+
+        .negative {
+            color: #ff7185;
+            font-weight: 800;
+        }
+
+        /* =========================
+           EMPTY / ERROR
+        ========================= */
+
+        .empty-state {
+            padding: 42px 20px;
+            text-align: center;
+
+            color: #7d8ca7;
+
+            background: #080e1b;
+            border: 1px dashed #29436e;
+            border-radius: 16px;
+        }
+
+        .empty-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .empty-title {
+            color: #b9c7df;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .empty-text {
+            margin-top: 7px;
+            font-size: 13px;
+        }
+
+        /* =========================
+           API NOTICE
+        ========================= */
+
+        .api-notice {
+            margin-top: 20px;
+
+            padding: 17px 19px;
+
+            background: #0a1020;
+
+            border: 1px solid #293f68;
+            border-radius: 15px;
+
+            color: #8f9db9;
+
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .api-notice strong {
+            color: #b9dfff;
+        }
+
+        .api-notice code {
+            color: #7bcaff;
+            background: #050912;
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .leaderboard-footer {
+            margin-top: 45px;
+            padding-top: 25px;
+
+            border-top: 1px solid #182541;
+
+            text-align: center;
+
+            color: #71809d;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .top-three {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .leaderboard-page {
+                padding: 50px 15px 65px;
+            }
+
+            .leaderboard-panel {
+                padding: 19px;
+                border-radius: 18px;
+            }
+
+            .leaderboard-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .leaderboard-header {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .leaderboard-header h1 {
+                font-size: 40px;
+            }
+
+            .leaderboard-tabs {
+                justify-content: stretch;
+            }
+
+            .tab-button {
+                flex: 1 1 calc(50% - 10px);
+            }
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #62bdff;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="features.html">Features</a>
+                <a href="lifesteal.html">Lifesteal</a>
+                <a href="economy.html">Economy</a>
+                <a href="teams.html">Teams</a>
+
+                <a
+                    href="leaderboard.html"
+                    class="active"
+                >
+                    Leaderboard
+                </a>
+
+                <a href="players.html">Players</a>
+                <a href="status.html">Status</a>
+                <a href="rules.html">Rules</a>
+                <a href="vote.html">Vote</a>
+
+                <a
+                    href="login.html"
+                    class="login-btn"
+                >
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         LEADERBOARD PAGE
+    ========================================================== -->
+
+    <main class="leaderboard-page">
+
+        <div class="leaderboard-container">
+
+
+            <!-- HEADER -->
+
+            <section class="leaderboard-header">
+
+                <div class="eyebrow">
+                    NEXORA COMPETITION
+                </div>
+
+                <h1>
+                    LEADERBOARD
+                </h1>
+
+                <p>
+                    Track player progression and server
+                    statistics. Live rankings will be
+                    supplied by the Nexora backend.
+                </p>
+
+            </section>
+
+
+            <!-- TABS -->
+
+            <div class="leaderboard-tabs">
+
+                <button
+                    class="tab-button active"
+                    data-category="kills"
+                >
+                    ⚔ Kills
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-category="hearts"
+                >
+                    ❤️ Hearts
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-category="balance"
+                >
+                    💰 Balance
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-category="playtime"
+                >
+                    ⏱ Playtime
+                </button>
+
+                <button
+                    class="tab-button"
+                    data-category="deaths"
+                >
+                    ☠ Deaths
+                </button>
+
+            </div>
+
+
+            <!-- MAIN PANEL -->
+
+            <section class="leaderboard-panel">
+
+                <div class="leaderboard-top">
+
+                    <h2 id="leaderboardTitle">
+                        Top Players — Kills
+                    </h2>
+
+                    <span
+                        class="update-text"
+                        id="updateText"
+                    >
+                        Waiting for backend...
+                    </span>
+
+                </div>
+
+
+                <!-- TOP THREE -->
+
+                <div
+                    class="top-three"
+                    id="topThree"
+                >
+
+                    <div class="top-card">
+
+                        <div class="medal">
+                            🥇
+                        </div>
+
+                        <div class="top-avatar">
+                            ?
+                        </div>
+
+                        <div class="top-name">
+                            Loading...
+                        </div>
+
+                        <div class="top-score">
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="top-card">
+
+                        <div class="medal">
+                            🥈
+                        </div>
+
+                        <div class="top-avatar">
+                            ?
+                        </div>
+
+                        <div class="top-name">
+                            Loading...
+                        </div>
+
+                        <div class="top-score">
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="top-card first">
+
+                        <div class="medal">
+                            🥉
+                        </div>
+
+                        <div class="top-avatar">
+                            ?
+                        </div>
+
+                        <div class="top-name">
+                            Loading...
+                        </div>
+
+                        <div class="top-score">
+                            --
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-wrap">
+
+                    <table
+                        class="leaderboard-table"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Rank
+                                </th>
+
+                                <th>
+                                    Player
+                                </th>
+
+                                <th>
+                                    Score
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="leaderboardBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    style="text-align:center;padding:35px"
+                                >
+                                    Loading leaderboard...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- API NOTICE -->
+
+            <div class="api-notice">
+
+                <strong>
+                    Live leaderboard:
+                </strong>
+
+                This page is ready for the Nexora Python
+                backend. The backend endpoint can provide
+                rankings through
+                <code>/api/leaderboard</code>.
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <footer class="leaderboard-footer">
+
+                <strong>NEXORA SMP</strong>
+                • Java + Bedrock
+                • Lifesteal Survival
+
+                <br>
+
+                © 2026 Nexora SMP. All rights reserved.
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuBtn && navLinks) {
+
+            menuBtn.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        navLinks.classList.toggle(
+                            "active"
+                        );
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        opened ? "true" : "false"
+                    );
+
+                }
+            );
+
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        let currentCategory =
+            "kills";
+
+        let leaderboardData = [];
+
+
+        const title =
+            document.getElementById(
+                "leaderboardTitle"
+            );
+
+        const body =
+            document.getElementById(
+                "leaderboardBody"
+            );
+
+        const topThree =
+            document.getElementById(
+                "topThree"
+            );
+
+        const updateText =
+            document.getElementById(
+                "updateText"
+            );
+
+
+        /* =====================================================
+           SAFE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================================
+           CATEGORY NAMES
+        ===================================================== */
+
+        const categoryNames = {
+
+            kills: "Kills",
+
+            hearts: "Hearts",
+
+            balance: "Balance",
+
+            playtime: "Playtime",
+
+            deaths: "Deaths"
+
+        };
+
+
+        /* =====================================================
+           GET SCORE
+        ===================================================== */
+
+        function getScore(player) {
+
+            if (
+                !player ||
+                typeof player !== "object"
+            ) {
+                return 0;
+            }
+
+            const value =
+                player[currentCategory];
+
+            if (
+                value === undefined ||
+                value === null
+            ) {
+                return 0;
+            }
+
+            return value;
+
+        }
+
+
+        /* =====================================================
+           FORMAT SCORE
+        ===================================================== */
+
+        function formatScore(value) {
+
+            if (
+                typeof value === "number"
+            ) {
+
+                return value.toLocaleString();
+
+            }
+
+            return escapeHTML(value);
+
+        }
+
+
+        /* =====================================================
+           GET NAME
+        ===================================================== */
+
+        function getName(player) {
+
+            return (
+                player?.name ??
+                player?.username ??
+                player?.player ??
+                "Unknown Player"
+            );
+
+        }
+
+
+        /* =====================================================
+           GET RANK
+        ===================================================== */
+
+        function getRank(player) {
+
+            return (
+                player?.rank ??
+                player?.group ??
+                "Player"
+            );
+
+        }
+
+
+        /* =====================================================
+           LOAD DATA
+        ===================================================== */
+
+        async function loadLeaderboard() {
+
+            updateText.textContent =
+                "Connecting...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/leaderboard",
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "API status " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                /*
+                 * Accept several backend formats.
+                 */
+
+                if (
+                    Array.isArray(data)
+                ) {
+
+                    leaderboardData =
+                        data;
+
+                } else if (
+                    Array.isArray(
+                        data.players
+                    )
+                ) {
+
+                    leaderboardData =
+                        data.players;
+
+                } else if (
+                    Array.isArray(
+                        data.leaderboard
+                    )
+                ) {
+
+                    leaderboardData =
+                        data.leaderboard;
+
+                } else {
+
+                    leaderboardData = [];
+
+                }
+
+
+                renderLeaderboard();
+
+                updateText.textContent =
+                    "Live data • Updated just now";
+
+            } catch (error) {
+
+                console.error(
+                    "Nexora Leaderboard API Error:",
+                    error
+                );
+
+
+                leaderboardData = [];
+
+                renderEmpty();
+
+                updateText.textContent =
+                    "Backend offline";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RENDER EMPTY
+        ===================================================== */
+
+        function renderEmpty() {
+
+            topThree.innerHTML = `
+
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        🏆
+                    </div>
+
+                    <div class="empty-title">
+                        Leaderboard API not connected
+                    </div>
+
+                    <div class="empty-text">
+                        Connect /api/leaderboard
+                        to display live rankings.
+                    </div>
+                </div>
+
+            `;
+
+            body.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="4"
+                        style="
+                            text-align:center;
+                            padding:35px;
+                            color:#7d8ca7;
+                        "
+                    >
+                        Live leaderboard data
+                        is waiting for the
+                        Nexora backend.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+           RENDER TOP THREE
+        ===================================================== */
+
+        function renderTopThree(players) {
+
+            const medals = [
+                "🥇",
+                "🥈",
+                "🥉"
+            ];
+
+
+            topThree.innerHTML =
+                medals
+                    .map(function (medal, index) {
+
+                        const player =
+                            players[index];
+
+
+                        if (!player) {
+
+                            return `
+
+                                <div class="top-card">
+
+                                    <div class="medal">
+                                        ${medal}
+                                    </div>
+
+                                    <div class="top-avatar">
+                                        ?
+                                    </div>
+
+                                    <div class="top-name">
+                                        --
+                                    </div>
+
+                                    <div class="top-score">
+                                        --
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+                        const name =
+                            getName(player);
+
+                        const firstLetter =
+                            name
+                                .charAt(0)
+                                .toUpperCase();
+
+
+                        return `
+
+                            <div
+                                class="top-card ${
+                                    index === 0
+                                    ? "first"
+                                    : ""
+                                }"
+                            >
+
+                                <div class="medal">
+                                    ${medal}
+                                </div>
+
+                                <div class="top-avatar">
+                                    ${escapeHTML(
+                                        firstLetter
+                                    )}
+                                </div>
+
+                                <div class="top-name">
+                                    ${escapeHTML(
+                                        name
+                                    )}
+                                </div>
+
+                                <div class="top-score">
+                                    ${formatScore(
+                                        getScore(player)
+                                    )}
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           RENDER TABLE
+        ===================================================== */
+
+        function renderTable(players) {
+
+            if (!players.length) {
+
+                body.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            style="
+                                text-align:center;
+                                padding:35px;
+                                color:#7d8ca7;
+                            "
+                        >
+                            No leaderboard data available.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            body.innerHTML =
+                players
+                    .map(function (player, index) {
+
+                        const name =
+                            getName(player);
+
+                        const rank =
+                            getRank(player);
+
+                        const firstLetter =
+                            name
+                                .charAt(0)
+                                .toUpperCase();
+
+
+                        return `
+
+                            <tr>
+
+                                <td class="rank-number">
+                                    #${index + 1}
+                                </td>
+
+
+                                <td>
+
+                                    <div
+                                        class="player-cell"
+                                    >
+
+                                        <div
+                                            class="player-avatar"
+                                        >
+                                            ${escapeHTML(
+                                                firstLetter
+                                            )}
+                                        </div>
+
+                                        <div>
+
+                                            <div
+                                                class="player-name"
+                                            >
+                                                ${escapeHTML(
+                                                    name
+                                                )}
+                                            </div>
+
+                                            <div
+                                                class="player-rank"
+                                            >
+                                                ${escapeHTML(
+                                                    rank
+                                                )}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td class="score">
+                                    ${formatScore(
+                                        getScore(player)
+                                    )}
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="positive"
+                                    >
+                                        ● Active
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           RENDER LEADERBOARD
+        ===================================================== */
+
+        function renderLeaderboard() {
+
+            title.textContent =
+                "Top Players — " +
+                categoryNames[
+                    currentCategory
+                ];
+
+
+            /*
+             * Sort a copy so original
+             * backend data stays untouched.
+             */
+
+            const sorted =
+                [...leaderboardData]
+                    .sort(function (a, b) {
+
+                        const scoreA =
+                            Number(
+                                getScore(a)
+                            ) || 0;
+
+                        const scoreB =
+                            Number(
+                                getScore(b)
+                            ) || 0;
+
+                        return scoreB - scoreA;
+
+                    });
+
+
+            renderTopThree(
+                sorted.slice(0, 3)
+            );
+
+            renderTable(
+                sorted
+            );
+
+        }
+
+
+        /* =====================================================
+           CATEGORY BUTTONS
+        ===================================================== */
+
+        document
+            .querySelectorAll(".tab-button")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        document
+                            .querySelectorAll(
+                                ".tab-button"
+                            )
+                            .forEach(function (btn) {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        currentCategory =
+                            button.dataset.category;
+
+
+                        if (
+                            leaderboardData.length
+                        ) {
+
+                            renderLeaderboard();
+
+                        } else {
+
+                            title.textContent =
+                                "Top Players — " +
+                                categoryNames[
+                                    currentCategory
+                                ];
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        loadLeaderboard();
+
+
+        /* =====================================================
+           AUTO REFRESH
+        ===================================================== */
+
+        setInterval(
+            loadLeaderboard,
+            15000
+        );
+
+    </script>
+
+</body>
+</html>

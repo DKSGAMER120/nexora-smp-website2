@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | My Account</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/account.css">
+
+    <style>
+        .account-page {
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px 90px;
+        }
+
+        .account-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .account-title .eyebrow {
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .account-title h1 {
+            margin: 10px 0;
+            font-size: clamp(42px, 7vw, 70px);
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #70c9ff,
+                #a78bfa
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .account-title p {
+            max-width: 680px;
+            margin: auto;
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        /* ACCOUNT HEADER */
+
+        .account-header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 22px;
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #294570;
+            border-radius: 22px;
+
+            box-shadow: 0 18px 50px #0005;
+        }
+
+        .account-avatar {
+            width: 88px;
+            height: 88px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .account-name {
+            font-size: 27px;
+            font-weight: 900;
+        }
+
+        .account-rank {
+            margin-top: 6px;
+            color: #70c9ff;
+            font-weight: 800;
+        }
+
+        .online-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 10px;
+
+            color: #5df0a5;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .online-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #39e58c;
+            box-shadow: 0 0 12px #39e58c;
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .account-btn {
+            padding: 11px 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid #294570;
+
+            background: #0a1020;
+
+            color: #cfe0fa;
+
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .account-btn:hover {
+            border-color: #4c91d8;
+            color: white;
+        }
+
+        /* STATS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            padding: 21px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #0d1529,
+                    #080d19
+                );
+
+            border: 1px solid #243d68;
+            border-radius: 17px;
+        }
+
+        .stat-icon {
+            font-size: 26px;
+        }
+
+        .stat-label {
+            margin-top: 12px;
+
+            color: #7485a4;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            margin-top: 6px;
+
+            color: #edf4ff;
+
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        /* MAIN GRID */
+
+        .account-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+            margin-top: 20px;
+        }
+
+        .account-panel {
+            background: #0a1020;
+
+            border: 1px solid #243d68;
+
+            border-radius: 18px;
+
+            padding: 23px;
+        }
+
+        .account-panel h2 {
+            margin: 0 0 18px;
+
+            font-size: 20px;
+        }
+
+        .panel-subtitle {
+            color: #7787a5;
+            font-size: 13px;
+            margin-top: -10px;
+            margin-bottom: 18px;
+        }
+
+        /* INFO */
+
+        .info-list {
+            display: grid;
+            gap: 11px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 12px 14px;
+
+            background: #070c17;
+
+            border: 1px solid #1b3155;
+            border-radius: 11px;
+        }
+
+        .info-key {
+            color: #71809d;
+        }
+
+        .info-value {
+            color: #dce9ff;
+            font-weight: 800;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        /* HEARTS */
+
+        .heart-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 20px;
+
+            background: #070c17;
+
+            border: 1px solid #273b61;
+            border-radius: 14px;
+        }
+
+        .heart-icon {
+            font-size: 34px;
+        }
+
+        .heart-number {
+            font-size: 30px;
+            font-weight: 900;
+            color: #ff7185;
+        }
+
+        .heart-label {
+            color: #7787a5;
+            font-size: 12px;
+        }
+
+        .progress {
+            height: 9px;
+
+            margin-top: 18px;
+
+            background: #050812;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 72%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #168fff,
+                    #754cff
+                );
+
+            border-radius: inherit;
+        }
+
+        /* INVENTORY */
+
+        .inventory {
+            display: grid;
+
+            grid-template-columns:
+                repeat(9, 1fr);
+
+            gap: 7px;
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111b31,
+                    #070c17
+                );
+
+            border: 1px solid #263c62;
+            border-radius: 8px;
+
+            color: #7789aa;
+
+            font-size: 18px;
+        }
+
+        .inventory-slot:hover {
+            border-color: #4a82c0;
+        }
+
+        /* HOTBAR */
+
+        .hotbar {
+            display: grid;
+
+            grid-template-columns:
+                repeat(9, 1fr);
+
+            gap: 7px;
+
+            max-width: 500px;
+
+            margin: 15px auto 0;
+        }
+
+        .hotbar-slot {
+            aspect-ratio: 1;
+
+            display: grid;
+            place-items: center;
+
+            background: #050a14;
+
+            border: 1px solid #385071;
+            border-radius: 8px;
+
+            font-size: 18px;
+        }
+
+        /* LIFESTEAL STATS */
+
+        .lifesteal-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 11px;
+        }
+
+        .life-stat {
+            padding: 15px;
+
+            background: #070c17;
+
+            border: 1px solid #1b3155;
+            border-radius: 12px;
+        }
+
+        .life-stat-label {
+            color: #71809d;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .life-stat-value {
+            margin-top: 5px;
+
+            font-size: 22px;
+            font-weight: 900;
+
+            color: #edf4ff;
+        }
+
+        /* ACTIVITY */
+
+        .activity-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .activity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px;
+
+            background: #070c17;
+
+            border: 1px solid #1b3155;
+            border-radius: 12px;
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+
+            flex: 0 0 36px;
+
+            display: grid;
+            place-items: center;
+
+            background: #101b31;
+
+            border-radius: 9px;
+        }
+
+        .activity-text {
+            color: #bdcbe0;
+            font-size: 13px;
+        }
+
+        .activity-time {
+            margin-top: 3px;
+
+            color: #687895;
+            font-size: 11px;
+        }
+
+        /* NOTICE */
+
+        .backend-notice {
+            margin-top: 20px;
+
+            padding: 17px 19px;
+
+            background: #0a1020;
+
+            border: 1px solid #294570;
+            border-radius: 14px;
+
+            color: #8f9db9;
+
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .backend-notice strong {
+            color: #b9dfff;
+        }
+
+        .backend-notice code {
+            padding: 2px 6px;
+
+            background: #050812;
+
+            color: #7bcaff;
+
+            border-radius: 5px;
+        }
+
+        /* LOADING */
+
+        .loading {
+            color: #7787a5;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .account-header {
+                grid-template-columns: auto 1fr;
+            }
+
+            .account-actions {
+                grid-column: 1 / -1;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .account-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .account-page {
+                padding: 50px 15px 70px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .account-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .account-avatar {
+                margin: auto;
+            }
+
+            .account-actions {
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .inventory {
+                gap: 4px;
+            }
+
+            .hotbar {
+                gap: 4px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="features.html">Features</a>
+                <a href="lifesteal.html">Lifesteal</a>
+                <a href="economy.html">Economy</a>
+                <a href="teams.html">Teams</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="players.html">Players</a>
+                <a href="status.html">Status</a>
+                <a href="rules.html">Rules</a>
+                <a href="vote.html">Vote</a>
+
+                <a
+                    href="my_account.html"
+                    class="login-btn active"
+                >
+                    👤 My Account
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         ACCOUNT
+    ====================================================== -->
+
+    <main class="account-page">
+
+
+        <!-- TITLE -->
+
+        <section class="account-title">
+
+            <div class="eyebrow">
+                NEXORA PLAYER CENTER
+            </div>
+
+            <h1>
+                MY ACCOUNT
+            </h1>
+
+            <p>
+                View your Nexora profile, Lifesteal
+                progression, economy statistics,
+                inventory and server activity.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             ACCOUNT HEADER
+        ================================================== -->
+
+        <section class="account-header">
+
+            <div
+                class="account-avatar"
+                id="playerAvatar"
+            >
+                ?
+            </div>
+
+            <div>
+
+                <div
+                    class="account-name"
+                    id="playerName"
+                >
+                    Loading...
+                </div>
+
+                <div
+                    class="account-rank"
+                    id="playerRank"
+                >
+                    Player
+                </div>
+
+                <div
+                    class="online-status"
+                    id="onlineStatus"
+                >
+                    <span class="online-dot"></span>
+                    Checking status...
+                </div>
+
+            </div>
+
+            <div class="account-actions">
+
+                <button
+                    class="account-btn"
+                    onclick="refreshAccount()"
+                >
+                    🔄 Refresh
+                </button>
+
+                <button
+                    class="account-btn"
+                    onclick="logout()"
+                >
+                    🚪 Logout
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STAT CARDS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏅
+                </div>
+
+                <div class="stat-label">
+                    Rank
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="rankStat"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div class="stat-label">
+                    Balance
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="balanceStat"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ❤️
+                </div>
+
+                <div class="stat-label">
+                    Hearts
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="heartsStat"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏱️
+                </div>
+
+                <div class="stat-label">
+                    Playtime
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="playtimeStat"
+                >
+                    --
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="account-grid">
+
+
+            <!-- PLAYER INFORMATION -->
+
+            <div class="account-panel">
+
+                <h2>
+                    👤 Player Information
+                </h2>
+
+                <div class="info-list">
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Username
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="infoName"
+                        >
+                            --
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Rank
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="infoRank"
+                        >
+                            --
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Server
+                        </span>
+
+                        <span class="info-value">
+                            Nexora SMP
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Platform
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="infoPlatform"
+                        >
+                            --
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Account Status
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="infoStatus"
+                        >
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIFESTEAL -->
+
+            <div class="account-panel">
+
+                <h2>
+                    ❤️ Lifesteal Progress
+                </h2>
+
+                <div class="panel-subtitle">
+                    Your current heart progression
+                </div>
+
+                <div class="heart-display">
+
+                    <div class="heart-icon">
+                        ❤️
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="heart-number"
+                            id="lifeHearts"
+                        >
+                            --
+                        </div>
+
+                        <div class="heart-label">
+                            Current Hearts
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="heartProgress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIFESTEAL STATS -->
+
+            <div class="account-panel">
+
+                <h2>
+                    📊 Lifesteal Statistics
+                </h2>
+
+                <div class="lifesteal-stats">
+
+                    <div class="life-stat">
+
+                        <div class="life-stat-label">
+                            Kills
+                        </div>
+
+                        <div
+                            class="life-stat-value"
+                            id="kills"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="life-stat">
+
+                        <div class="life-stat-label">
+                            Deaths
+                        </div>
+
+                        <div
+                            class="life-stat-value"
+                            id="deaths"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="life-stat">
+
+                        <div class="life-stat-label">
+                            K/D
+                        </div>
+
+                        <div
+                            class="life-stat-value"
+                            id="kd"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="life-stat">
+
+                        <div class="life-stat-label">
+                            Playtime
+                        </div>
+
+                        <div
+                            class="life-stat-value"
+                            id="lifePlaytime"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INVENTORY -->
+
+            <div class="account-panel">
+
+                <h2>
+                    🎒 Inventory
+                </h2>
+
+                <div class="panel-subtitle">
+                    Current inventory snapshot
+                </div>
+
+                <div
+                    class="inventory"
+                    id="inventory"
+                >
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                    <div class="inventory-slot">
+                        ·
+                    </div>
+
+                </div>
+
+                <div
+                    class="hotbar"
+                    id="hotbar"
+                >
+
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+                    <div class="hotbar-slot">·</div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="account-panel">
+
+                <h2>
+                    🕒 Recent Activity
+                </h2>
+
+                <div
+                    class="activity-list"
+                    id="activityList"
+                >
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            🌐
+                        </div>
+
+                        <div>
+
+                            <div class="activity-text">
+                                Account data loaded
+                            </div>
+
+                            <div class="activity-time">
+                                Just now
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            🎮
+                        </div>
+
+                        <div>
+
+                            <div class="activity-text">
+                                Nexora player profile
+                            </div>
+
+                            <div class="activity-time">
+                                Server data
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACCOUNT SECURITY -->
+
+            <div class="account-panel">
+
+                <h2>
+                    🔐 Account Security
+                </h2>
+
+                <div class="info-list">
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Website Account
+                        </span>
+
+                        <span class="info-value">
+                            Protected
+                        </span>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Session
+                        </span>
+
+                        <span
+                            class="info-value"
+                            id="sessionStatus"
+                        >
+                            Active
+                        </span>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span class="info-key">
+                            Minecraft Password
+                        </span>
+
+                        <span class="info-value">
+                            Not exposed
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BACKEND NOTICE
+        ================================================== -->
+
+        <div class="backend-notice">
+
+            <strong>
+                Live account data:
+            </strong>
+
+            This page is ready for the Nexora Python
+            backend. After authentication is connected,
+            the page can load the logged-in player's
+            rank, inventory, hearts, kills, deaths,
+            playtime and balance through secure API
+            endpoints such as
+
+            <code>/api/me</code>.
+
+            <br><br>
+
+            Never send or store a Minecraft/AuthMe
+            password in browser JavaScript.
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           MOBILE NAVIGATION
+        ===================================================== */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuBtn && navLinks) {
+
+            menuBtn.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        navLinks.classList.toggle(
+                            "active"
+                        );
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        opened
+                            ? "true"
+                            : "false"
+                    );
+
+                }
+            );
+
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           SAFE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================================
+           FORMAT NUMBER
+        ===================================================== */
+
+        function formatNumber(value) {
+
+            const number =
+                Number(value);
+
+            if (Number.isNaN(number)) {
+                return escapeHTML(value ?? "--");
+            }
+
+            return number.toLocaleString();
+
+        }
+
+
+        /* =====================================================
+           UPDATE ACCOUNT
+        ===================================================== */
+
+        function updateAccount(data) {
+
+            const player =
+                data.player || data;
+
+
+            const name =
+                player.name ||
+                player.username ||
+                "Unknown";
+
+
+            const rank =
+                player.rank ||
+                player.group ||
+                "Player";
+
+
+            const balance =
+                player.balance ??
+                player.money ??
+                0;
+
+
+            const hearts =
+                player.hearts ??
+                player.health ??
+                0;
+
+
+            const playtime =
+                player.playtime ||
+                player.play_time ||
+                "--";
+
+
+            const kills =
+                player.kills ??
+                0;
+
+
+            const deaths =
+                player.deaths ??
+                0;
+
+
+            const platform =
+                player.platform ||
+                player.edition ||
+                "Unknown";
+
+
+            /* HEADER */
+
+            document.getElementById(
+                "playerName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "playerRank"
+            ).textContent = rank;
+
+
+            document.getElementById(
+                "playerAvatar"
+            ).textContent =
+                name.charAt(0).toUpperCase();
+
+
+            /* MAIN STATS */
+
+            document.getElementById(
+                "rankStat"
+            ).textContent = rank;
+
+
+            document.getElementById(
+                "balanceStat"
+            ).textContent =
+                "$" + formatNumber(balance);
+
+
+            document.getElementById(
+                "heartsStat"
+            ).textContent =
+                formatNumber(hearts);
+
+
+            document.getElementById(
+                "playtimeStat"
+            ).textContent =
+                playtime;
+
+
+            /* INFORMATION */
+
+            document.getElementById(
+                "infoName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "infoRank"
+            ).textContent = rank;
+
+
+            document.getElementById(
+                "infoPlatform"
+            ).textContent = platform;
+
+
+            document.getElementById(
+                "infoStatus"
+            ).textContent =
+                player.online
+                    ? "Online"
+                    : "Offline";
+
+
+            /* HEARTS */
+
+            document.getElementById(
+                "lifeHearts"
+            ).textContent =
+                formatNumber(hearts);
+
+
+            const maxHearts =
+                Number(
+                    player.max_hearts ??
+                    20
+                );
+
+
+            const currentHearts =
+                Number(hearts) || 0;
+
+
+            const percentage =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        (currentHearts /
+                            maxHearts) *
+                            100
+                    )
+                );
+
+
+            document.getElementById(
+                "heartProgress"
+            ).style.width =
+                percentage + "%";
+
+
+            /* COMBAT STATISTICS */
+
+            document.getElementById(
+                "kills"
+            ).textContent =
+                formatNumber(kills);
+
+
+            document.getElementById(
+                "deaths"
+            ).textContent =
+                formatNumber(deaths);
+
+
+            const kd =
+                deaths > 0
+                    ? (
+                        Number(kills) /
+                        Number(deaths)
+                    ).toFixed(2)
+                    : Number(kills).toFixed(2);
+
+
+            document.getElementById(
+                "kd"
+            ).textContent = kd;
+
+
+            document.getElementById(
+                "lifePlaytime"
+            ).textContent =
+                playtime;
+
+
+            /* ONLINE STATUS */
+
+            const online =
+                player.online;
+
+
+            document.getElementById(
+                "onlineStatus"
+            ).innerHTML = online
+
+                ? `
+                    <span class="online-dot"></span>
+                    Online
+                  `
+
+                : `
+                    <span
+                        class="online-dot"
+                        style="
+                            background:#7787a5;
+                            box-shadow:none;
+                        "
+                    ></span>
+                    Offline
+                  `;
+
+
+            /* INVENTORY */
+
+            if (
+                Array.isArray(
+                    player.inventory
+                )
+            ) {
+
+                renderInventory(
+                    player.inventory
+                );
+
+            }
+
+
+            /* HOTBAR */
+
+            if (
+                Array.isArray(
+                    player.hotbar
+                )
+            ) {
+
+                renderHotbar(
+                    player.hotbar
+                );
+
+            }
+
+
+            /* ACTIVITY */
+
+            if (
+                Array.isArray(
+                    player.activity
+                )
+            ) {
+
+                renderActivity(
+                    player.activity
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           INVENTORY
+        ===================================================== */
+
+        function renderInventory(items) {
+
+            const inventory =
+                document.getElementById(
+                    "inventory"
+                );
+
+
+            inventory.innerHTML =
+                items
+                    .slice(0, 27)
+                    .map(function (item) {
+
+                        return `
+                            <div
+                                class="inventory-slot"
+                                title="${escapeHTML(
+                                    item.name ||
+                                    item ||
+                                    ""
+                                )}"
+                            >
+                                ${escapeHTML(
+                                    item.icon ||
+                                    "·"
+                                )}
+                            </div>
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           HOTBAR
+        ===================================================== */
+
+        function renderHotbar(items) {
+
+            const hotbar =
+                document.getElementById(
+                    "hotbar"
+                );
+
+
+            hotbar.innerHTML =
+                items
+                    .slice(0, 9)
+                    .map(function (item) {
+
+                        return `
+                            <div
+                                class="hotbar-slot"
+                                title="${escapeHTML(
+                                    item.name ||
+                                    item ||
+                                    ""
+                                )}"
+                            >
+                                ${escapeHTML(
+                                    item.icon ||
+                                    "·"
+                                )}
+                            </div>
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           ACTIVITY
+        ===================================================== */
+
+        function renderActivity(items) {
+
+            const activity =
+                document.getElementById(
+                    "activityList"
+                );
+
+
+            activity.innerHTML =
+                items
+                    .slice(0, 8)
+                    .map(function (item) {
+
+                        return `
+
+                            <div class="activity">
+
+                                <div class="activity-icon">
+                                    ${escapeHTML(
+                                        item.icon ||
+                                        "📌"
+                                    )}
+                                </div>
+
+                                <div>
+
+                                    <div class="activity-text">
+                                        ${escapeHTML(
+                                            item.text ||
+                                            item.message ||
+                                            "Activity"
+                                        )}
+                                    </div>
+
+                                    <div class="activity-time">
+                                        ${escapeHTML(
+                                            item.time ||
+                                            "Recently"
+                                        )}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* =====================================================
+           LOAD ACCOUNT
+        ===================================================== */
+
+        async function loadAccount() {
+
+            try {
+
+                /*
+                 * Secure session-based endpoint.
+                 *
+                 * Do NOT put Minecraft/AuthMe
+                 * passwords inside this request.
+                 */
+
+                const response =
+                    await fetch(
+                        "/api/me",
+                        {
+                            method: "GET",
+                            credentials: "include",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "API returned " +
+                        response.status
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                updateAccount(data);
+
+
+                document.getElementById(
+                    "sessionStatus"
+                ).textContent =
+                    "Connected";
+
+
+            } catch (error) {
+
+                console.warn(
+                    "Nexora account API unavailable:",
+                    error
+                );
+
+
+                /*
+                 * Demo-free fallback.
+                 * No fake player statistics.
+                 */
+
+                document.getElementById(
+                    "playerName"
+                ).textContent =
+                    "Not connected";
+
+
+                document.getElementById(
+                    "playerRank"
+                ).textContent =
+                    "--";
+
+
+                document.getElementById(
+                    "playerAvatar"
+                ).textContent =
+                    "?";
+
+
+                document.getElementById(
+                    "onlineStatus"
+                ).innerHTML = `
+                    <span
+                        class="online-dot"
+                        style="
+                            background:#7787a5;
+                            box-shadow:none;
+                        "
+                    ></span>
+                    Backend offline
+                `;
+
+
+                document.getElementById(
+                    "rankStat"
+                ).textContent =
+                    "--";
+
+
+                document.getElementById(
+                    "balanceStat"
+                ).textContent =
+                    "--";
+
+
+                document.getElementById(
+                    "heartsStat"
+                ).textContent =
+                    "--";
+
+
+                document.getElementById(
+                    "playtimeStat"
+                ).textContent =
+                    "--";
+
+
+                document.getElementById(
+                    "infoStatus"
+                ).textContent =
+                    "API offline";
+
+
+                document.getElementById(
+                    "sessionStatus"
+                ).textContent =
+                    "Not connected";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REFRESH
+        ===================================================== */
+
+        function refreshAccount() {
+
+            loadAccount();
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        async function logout() {
+
+            try {
+
+                await fetch(
+                    "/api/logout",
+                    {
+                        method: "POST",
+                        credentials: "include"
+                    }
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Logout API unavailable"
+                );
+
+            }
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        loadAccount();
+
+
+        /* =====================================================
+           AUTO REFRESH
+        ===================================================== */
+
+        setInterval(
+            loadAccount,
+            30000
+        );
+
+    </script>
+
+</body>
+</html>

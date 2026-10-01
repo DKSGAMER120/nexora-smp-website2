@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora SMP | Rules</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .rules-page {
+            width: 100%;
+            min-height: calc(100vh - 80px);
+            padding: 70px 20px 90px;
+        }
+
+        .rules-container {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .rules-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .eyebrow {
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .rules-header h1 {
+            margin: 10px 0;
+
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #70c9ff,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .rules-header p {
+            max-width: 720px;
+            margin: 18px auto 0;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* =========================
+           IMPORTANT NOTICE
+        ========================= */
+
+        .rules-notice {
+            margin-bottom: 25px;
+
+            padding: 20px 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(22,143,255,.10),
+                    rgba(117,76,255,.08)
+                );
+
+            border: 1px solid #31558a;
+            border-radius: 17px;
+
+            color: #9eb1cf;
+
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .rules-notice strong {
+            color: #dcecff;
+        }
+
+        /* =========================
+           RULE GRID
+        ========================= */
+
+        .rules-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .rule-card {
+            position: relative;
+
+            padding: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #263f6d;
+            border-radius: 19px;
+
+            overflow: hidden;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .rule-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: -70px;
+            right: -70px;
+
+            width: 160px;
+            height: 160px;
+
+            background: #168fff18;
+
+            border-radius: 50%;
+
+            filter: blur(5px);
+
+            pointer-events: none;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #3e72b7;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.35);
+        }
+
+        .rule-number {
+            position: absolute;
+
+            top: 18px;
+            right: 20px;
+
+            color: #34496e;
+
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .rule-icon {
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 15px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            font-size: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(22,143,255,.20);
+        }
+
+        .rule-card h2 {
+            margin: 0 0 9px;
+
+            color: #edf4ff;
+
+            font-size: 20px;
+        }
+
+        .rule-card p {
+            margin: 0;
+
+            color: #8f9db9;
+
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .rule-list {
+            margin: 15px 0 0;
+            padding-left: 20px;
+
+            color: #aab8d0;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .rule-list li {
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           EXTRA RULES
+        ========================= */
+
+        .extra-rules {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-top: 18px;
+        }
+
+        .extra-card {
+            padding: 20px;
+
+            background: #0a1020;
+
+            border: 1px solid #243d68;
+            border-radius: 16px;
+        }
+
+        .extra-card-icon {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .extra-card h3 {
+            margin: 0 0 7px;
+
+            color: #dce9ff;
+
+            font-size: 16px;
+        }
+
+        .extra-card p {
+            margin: 0;
+
+            color: #7f8eaa;
+
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        /* =========================
+           SUPPORT
+        ========================= */
+
+        .support-section {
+            margin-top: 25px;
+
+            padding: 27px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d1730,
+                    #080d19
+                );
+
+            border: 1px solid #2a4777;
+            border-radius: 20px;
+        }
+
+        .support-section h2 {
+            margin: 0 0 10px;
+
+            font-size: 25px;
+        }
+
+        .support-section p {
+            max-width: 650px;
+
+            margin: 0 auto 20px;
+
+            color: #8f9db9;
+
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .support-buttons {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .support-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 18px;
+
+            border-radius: 11px;
+
+            border: 1px solid #31558a;
+
+            background: #0b1427;
+
+            color: #dcecff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 900;
+
+            transition: .2s;
+        }
+
+        .support-btn:hover {
+            border-color: #5c9be0;
+            transform: translateY(-2px);
+        }
+
+        .support-btn.primary {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: white;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .rules-footer {
+            margin-top: 45px;
+            padding-top: 25px;
+
+            border-top: 1px solid #182541;
+
+            text-align: center;
+
+            color: #71809d;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .extra-rules {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .rules-page {
+                padding: 50px 15px 70px;
+            }
+
+            .rules-header {
+                margin-bottom: 32px;
+            }
+
+            .rule-card {
+                padding: 21px;
+            }
+
+            .extra-rules {
+                grid-template-columns: 1fr;
+            }
+
+            .support-section {
+                padding: 23px 18px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .rules-header h1 {
+                font-size: 42px;
+            }
+
+            .rule-number {
+                font-size: 23px;
+            }
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #62bdff;
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="features.html">
+                    Features
+                </a>
+
+                <a href="lifesteal.html">
+                    Lifesteal
+                </a>
+
+                <a href="economy.html">
+                    Economy
+                </a>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a
+                    href="rules.html"
+                    class="active"
+                >
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a
+                    href="my_account.html"
+                    class="login-btn"
+                >
+                    👤 My Account
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         RULES
+    ====================================================== -->
+
+    <main class="rules-page">
+
+        <div class="rules-container">
+
+
+            <!-- HEADER -->
+
+            <section class="rules-header">
+
+                <div class="eyebrow">
+                    NEXORA SMP COMMUNITY
+                </div>
+
+                <h1>
+                    SERVER RULES
+                </h1>
+
+                <p>
+                    Follow these rules to keep Nexora SMP
+                    fair, enjoyable and welcoming for
+                    everyone.
+                </p>
+
+            </section>
+
+
+            <!-- NOTICE -->
+
+            <div class="rules-notice">
+
+                <strong>
+                    📌 Important:
+                </strong>
+
+                By playing on Nexora SMP, you agree to
+                follow the server rules and reasonable
+                staff instructions. Rules may be updated
+                when necessary, so check this page
+                regularly.
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN RULES
+            ================================================== -->
+
+            <section class="rules-grid">
+
+
+                <!-- RULE 01 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        01
+                    </div>
+
+                    <div class="rule-icon">
+                        🤝
+                    </div>
+
+                    <h2>
+                        Respect Everyone
+                    </h2>
+
+                    <p>
+                        Treat other players and staff
+                        respectfully. Keep the community
+                        friendly and enjoyable.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            No harassment or targeted abuse.
+                        </li>
+
+                        <li>
+                            No threats or intimidation.
+                        </li>
+
+                        <li>
+                            Do not deliberately disrupt
+                            another player's experience.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 02 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        02
+                    </div>
+
+                    <div class="rule-icon">
+                        💬
+                    </div>
+
+                    <h2>
+                        Keep Chat Appropriate
+                    </h2>
+
+                    <p>
+                        Use Minecraft and Discord chat
+                        responsibly.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            No excessive spam.
+                        </li>
+
+                        <li>
+                            Do not flood chat with repeated
+                            messages.
+                        </li>
+
+                        <li>
+                            Avoid inappropriate content.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 03 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        03
+                    </div>
+
+                    <div class="rule-icon">
+                        🛠️
+                    </div>
+
+                    <h2>
+                        No Exploits
+                    </h2>
+
+                    <p>
+                        Do not abuse bugs, exploits or
+                        unintended mechanics to gain an
+                        unfair advantage.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            Report serious bugs to staff.
+                        </li>
+
+                        <li>
+                            Do not duplicate items using
+                            exploits.
+                        </li>
+
+                        <li>
+                            Do not intentionally abuse
+                            server errors.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 04 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        04
+                    </div>
+
+                    <div class="rule-icon">
+                        🔐
+                    </div>
+
+                    <h2>
+                        Account Security
+                    </h2>
+
+                    <p>
+                        Keep your account credentials private
+                        and protect your account.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            Never share your password.
+                        </li>
+
+                        <li>
+                            Do not attempt to access another
+                            player's account.
+                        </li>
+
+                        <li>
+                            Report suspicious account activity
+                            to staff.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 05 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        05
+                    </div>
+
+                    <div class="rule-icon">
+                        🏠
+                    </div>
+
+                    <h2>
+                        Respect Builds
+                    </h2>
+
+                    <p>
+                        Respect player bases and community
+                        builds.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            Do not intentionally destroy
+                            another player's build.
+                        </li>
+
+                        <li>
+                            Do not build specifically to
+                            obstruct another player.
+                        </li>
+
+                        <li>
+                            Respect protected areas.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 06 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        06
+                    </div>
+
+                    <div class="rule-icon">
+                        📢
+                    </div>
+
+                    <h2>
+                        No Advertising
+                    </h2>
+
+                    <p>
+                        Keep outside-server advertising out
+                        of Nexora's chat and community spaces.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            No unsolicited server advertising.
+                        </li>
+
+                        <li>
+                            No repeated promotional messages.
+                        </li>
+
+                        <li>
+                            Follow the Discord advertising
+                            rules as well.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 07 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        07
+                    </div>
+
+                    <div class="rule-icon">
+                        👮
+                    </div>
+
+                    <h2>
+                        Follow Staff Instructions
+                    </h2>
+
+                    <p>
+                        Staff members help maintain the server
+                        and investigate rule violations.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            Follow reasonable staff requests.
+                        </li>
+
+                        <li>
+                            Do not deliberately obstruct an
+                            investigation.
+                        </li>
+
+                        <li>
+                            Use the support system for appeals.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+                <!-- RULE 08 -->
+
+                <article class="rule-card">
+
+                    <div class="rule-number">
+                        08
+                    </div>
+
+                    <div class="rule-icon">
+                        ⚖️
+                    </div>
+
+                    <h2>
+                        Fair Play
+                    </h2>
+
+                    <p>
+                        Play Nexora using the server's intended
+                        gameplay systems.
+                    </p>
+
+                    <ul class="rule-list">
+
+                        <li>
+                            Do not use prohibited client
+                            modifications or unfair tools.
+                        </li>
+
+                        <li>
+                            Do not exploit unintended
+                            server behavior.
+                        </li>
+
+                        <li>
+                            Do not manipulate server systems
+                            unfairly.
+                        </li>
+
+                    </ul>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXTRA RULES
+            ================================================== -->
+
+            <section class="extra-rules">
+
+
+                <article class="extra-card">
+
+                    <div class="extra-card-icon">
+                        🌐
+                    </div>
+
+                    <h3>
+                        Discord Rules
+                    </h3>
+
+                    <p>
+                        The Nexora Discord has its own
+                        community guidelines. Follow the
+                        rules shown there as well.
+                    </p>
+
+                </article>
+
+
+                <article class="extra-card">
+
+                    <div class="extra-card-icon">
+                        🏪
+                    </div>
+
+                    <h3>
+                        Economy Fairness
+                    </h3>
+
+                    <p>
+                        Do not manipulate shops, trades or
+                        economy systems through exploits
+                        or unintended behavior.
+                    </p>
+
+                </article>
+
+
+                <article class="extra-card">
+
+                    <div class="extra-card-icon">
+                        🐛
+                    </div>
+
+                    <h3>
+                        Report Bugs
+                    </h3>
+
+                    <p>
+                        If you discover a serious bug,
+                        report it instead of abusing it
+                        for personal advantage.
+                    </p>
+
+                </article>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 SUPPORT
+            ================================================== -->
+
+            <section class="support-section">
+
+                <h2>
+                    Need Help or Want to Report Something?
+                </h2>
+
+                <p>
+                    If you have a question about a rule,
+                    need staff assistance or want to report
+                    an issue, contact the Nexora community
+                    through Discord.
+                </p>
+
+                <div class="support-buttons">
+
+                    <a
+                        class="support-btn primary"
+                        href="https://discord.gg/vSGXupYJG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        💬 Join Nexora Discord
+                    </a>
+
+                    <a
+                        class="support-btn"
+                        href="index.html"
+                    >
+                        🏠 Back to Home
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="rules-footer">
+
+                <strong>
+                    NEXORA SMP
+                </strong>
+
+                • Java + Bedrock
+                • Lifesteal Survival
+
+                <br>
+
+                Play fair. Respect others. Enjoy Nexora.
+
+                <br><br>
+
+                © 2026 Nexora SMP. All rights reserved.
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
+
+    <script>
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        if (menuBtn && navLinks) {
+
+            menuBtn.addEventListener(
+                "click",
+                function () {
+
+                    const opened =
+                        navLinks.classList.toggle(
+                            "active"
+                        );
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        opened
+                            ? "true"
+                            : "false"
+                    );
+
+                }
+            );
+
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            menuBtn.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+                    );
+
+                });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teams | NEXORA SMP</title>
+
+    <link rel="stylesheet" href="css/nexora.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+        /* =========================
+           TEAMS PAGE
+        ========================== */
+
+        .teams-page {
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .teams-hero {
+            max-width: 1150px;
+            margin: auto;
+            padding: 95px 24px 70px;
+            text-align: center;
+        }
+
+        .teams-eyebrow {
+            display: inline-block;
+            color: #7ecbff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .teams-hero h1 {
+            margin: 0;
+
+            font-size: clamp(48px, 8vw, 84px);
+            line-height: 1.05;
+            font-weight: 950;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #70c9ff,
+                    #a78bfa,
+                    #ffffff
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .teams-hero p {
+            max-width: 720px;
+            margin: 22px auto 0;
+
+            color: #9ba9c8;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           TEAM VISUAL
+        ========================== */
+
+        .team-visual {
+            max-width: 900px;
+            margin: 38px auto 0;
+
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .team-player {
+            min-height: 150px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101a31,
+                    #080d19
+                );
+
+            border: 1px solid #29456f;
+            border-radius: 20px;
+
+            transition: .25s ease;
+        }
+
+        .team-player:hover {
+            transform: translateY(-5px);
+            border-color: #4387c8;
+            box-shadow: 0 18px 45px rgba(0,0,0,.4);
+        }
+
+        .player-icon {
+            font-size: 44px;
+            margin-bottom: 9px;
+        }
+
+        .team-player strong {
+            color: #ffffff;
+            font-size: 17px;
+        }
+
+        .team-player span {
+            margin-top: 5px;
+            color: #7385a4;
+            font-size: 12px;
+        }
+
+        .team-core {
+            min-height: 190px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #183d64,
+                    #0a1020 68%
+                );
+
+            border: 1px solid #3675ae;
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.45),
+                inset 0 0 45px rgba(40,150,255,.06);
+        }
+
+        .team-core-icon {
+            font-size: 58px;
+            margin-bottom: 8px;
+        }
+
+        .team-core h3 {
+            margin: 0;
+
+            color: #ffffff;
+            font-size: 25px;
+        }
+
+        .team-core p {
+            margin: 7px 0 0;
+
+            color: #8294b2;
+            font-size: 13px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        .teams-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 15px 24px 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin: 70px 0 35px;
+        }
+
+        .section-heading .small {
+            color: #7ecbff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 9px 0 10px;
+
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .section-heading p {
+            max-width: 680px;
+            margin: auto;
+
+            color: #8f9db9;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           TEAM FEATURES
+        ========================== */
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+        }
+
+        .team-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 27px;
+            min-height: 220px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101a31,
+                    #080d19
+                );
+
+            border: 1px solid #293e62;
+            border-radius: 20px;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .team-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -90px;
+            top: -90px;
+
+            border-radius: 50%;
+
+            background: #168fff18;
+            filter: blur(5px);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #3b72aa;
+
+            box-shadow:
+                0 18px 45px rgba(0,0,0,.4);
+        }
+
+        .team-icon {
+            position: relative;
+            z-index: 1;
+
+            width: 59px;
+            height: 59px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 15px;
+
+            background: #111d31;
+            border: 1px solid #2e4e78;
+
+            font-size: 29px;
+        }
+
+        .team-card h3 {
+            position: relative;
+            z-index: 1;
+
+            margin: 0 0 9px;
+
+            color: #ffffff;
+            font-size: 19px;
+        }
+
+        .team-card p {
+            position: relative;
+            z-index: 1;
+
+            margin: 0;
+
+            color: #8e9cb7;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           TEAM JOURNEY
+        ========================== */
+
+        .team-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .team-step {
+            position: relative;
+
+            padding: 30px;
+
+            background: #0a1020;
+
+            border: 1px solid #263d64;
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            margin: 0 auto 17px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+
+            color: #ffffff;
+            font-weight: 950;
+        }
+
+        .team-step h3 {
+            margin: 0 0 9px;
+
+            color: #ffffff;
+            font-size: 19px;
+        }
+
+        .team-step p {
+            margin: 0;
+
+            color: #8796b2;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           TEAM ROLES
+        ========================== */
+
+        .roles-panel {
+            padding: 32px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    #192e56,
+                    #0a1020 58%
+                );
+
+            border: 1px solid #2b4c7a;
+            border-radius: 22px;
+        }
+
+        .roles-panel h3 {
+            margin: 0 0 9px;
+
+            color: #ffffff;
+            font-size: 26px;
+        }
+
+        .roles-panel > p {
+            margin: 0 0 23px;
+
+            color: #8c9ab5;
+            line-height: 1.7;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .role {
+            padding: 18px;
+
+            background: #070d19;
+
+            border: 1px solid #21385e;
+            border-radius: 15px;
+        }
+
+        .role-icon {
+            font-size: 27px;
+            margin-bottom: 9px;
+        }
+
+        .role strong {
+            display: block;
+
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .role span {
+            color: #7889a6;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           TEAM BENEFITS
+        ========================== */
+
+        .benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .benefit-panel {
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #101a31,
+                    #080d19
+                );
+
+            border: 1px solid #293e62;
+            border-radius: 21px;
+        }
+
+        .benefit-panel h3 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        .benefit-panel p {
+            margin: 0 0 18px;
+
+            color: #8c9bb7;
+            line-height: 1.7;
+        }
+
+        .benefit-list {
+            list-style: none;
+
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefit-list li {
+            display: flex;
+            gap: 10px;
+
+            margin-bottom: 11px;
+
+            color: #c3d0e6;
+            line-height: 1.5;
+        }
+
+        .benefit-list li span {
+            color: #69c6ff;
+            font-weight: 900;
+        }
+
+        /* =========================
+           TEAM NOTE
+        ========================== */
+
+        .team-note {
+            margin-top: 22px;
+
+            padding: 22px 24px;
+
+            background: #0b1120;
+
+            border: 1px solid #35415e;
+            border-radius: 17px;
+        }
+
+        .team-note strong {
+            display: block;
+
+            color: #ffffff;
+            margin-bottom: 7px;
+        }
+
+        .team-note p {
+            margin: 0;
+
+            color: #8c9ab4;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CTA
+        ========================== */
+
+        .teams-cta {
+            max-width: 1000px;
+            margin: 75px auto 0;
+
+            padding: 48px 30px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0,
+                    #18385c,
+                    #0b1221 58%,
+                    #080d18
+                );
+
+            border: 1px solid #315579;
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.4);
+        }
+
+        .teams-cta h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+
+            font-size: clamp(30px, 5vw, 45px);
+        }
+
+        .teams-cta p {
+            max-width: 620px;
+
+            margin: 0 auto 25px;
+
+            color: #9ba9c8;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 900;
+
+            background: #101a31;
+
+            border: 1px solid #315b99;
+
+            transition: .2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            border-color: #6a99d2;
+        }
+
+        .cta-button.primary {
+            border: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #168fff,
+                    #754cff
+                );
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .site-footer {
+            margin-top: 90px;
+
+            background: #04060c;
+
+            border-top: 1px solid #182541;
+        }
+
+        .footer-container {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 55px 24px 25px;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand h2 {
+            margin: 0 0 12px;
+
+            color: #ffffff;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand h2 span {
+            color: #39a8ff;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+
+            color: #71809d;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 15px;
+
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #71809d;
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: .2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #70c9ff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            max-width: 1150px;
+            margin: auto;
+
+            padding: 20px 24px 25px;
+
+            border-top: 1px solid #121d33;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            color: #596a89;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 950px) {
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .roles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 760px) {
+
+            .team-visual {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .team-player,
+            .team-core {
+                min-height: 130px;
+            }
+
+            .team-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .teams-hero {
+                padding: 65px 15px 50px;
+            }
+
+            .teams-hero p {
+                font-size: 16px;
+            }
+
+            .teams-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-panel {
+                padding: 24px;
+            }
+
+            .benefit-panel {
+                padding: 24px;
+            }
+
+            .teams-cta {
+                padding: 35px 22px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="teams-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                NEXORA <span>SMP</span>
+            </a>
+
+            <button
+                class="mobile-menu-btn"
+                type="button"
+                aria-label="Open navigation"
+                onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="mainNav">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="features.html">Features</a>
+
+                <a href="lifesteal.html">Lifesteal</a>
+
+                <a href="economy.html">Economy</a>
+
+                <a href="teams.html" class="active">
+                    Teams
+                </a>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+                <a href="login.html" class="login-btn">
+                    🔐 Login
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="teams-hero">
+
+            <div class="teams-eyebrow">
+                NEXORA SMP • TEAM SYSTEM
+            </div>
+
+            <h1>TEAMS</h1>
+
+            <p>
+                Team up with friends, build together, share
+                resources and create your own community inside
+                the Nexora world.
+            </p>
+
+
+            <!-- TEAM VISUAL -->
+
+            <div class="team-visual">
+
+                <div class="team-player">
+
+                    <div class="player-icon">
+                        🧑‍🌾
+                    </div>
+
+                    <strong>PLAYER</strong>
+
+                    <span>TEAM MEMBER</span>
+
+                </div>
+
+
+                <div class="team-core">
+
+                    <div class="team-core-icon">
+                        👥
+                    </div>
+
+                    <h3>NEXORA TEAM</h3>
+
+                    <p>
+                        BUILD • COOPERATE • PROGRESS
+                    </p>
+
+                </div>
+
+
+                <div class="team-player">
+
+                    <div class="player-icon">
+                        🧑‍🔧
+                    </div>
+
+                    <strong>PLAYER</strong>
+
+                    <span>TEAM MEMBER</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="teams-container">
+
+
+            <!-- =========================
+                 CORE FEATURES
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    TEAM SYSTEM
+                </div>
+
+                <h2>Build Together</h2>
+
+                <p>
+                    Teams make it easier to coordinate your
+                    survival progression and build a community.
+                </p>
+
+            </div>
+
+
+            <div class="team-grid">
+
+                <div class="team-card">
+
+                    <div class="team-icon">
+                        👥
+                    </div>
+
+                    <h3>Create a Team</h3>
+
+                    <p>
+                        Create your own team and bring your
+                        friends together in one group.
+                    </p>
+
+                </div>
+
+
+                <div class="team-card">
+
+                    <div class="team-icon">
+                        🤝
+                    </div>
+
+                    <h3>Cooperate</h3>
+
+                    <p>
+                        Work together on resources, builds and
+                        your team's survival progression.
+                    </p>
+
+                </div>
+
+
+                <div class="team-card">
+
+                    <div class="team-icon">
+                        🏠
+                    </div>
+
+                    <h3>Build Together</h3>
+
+                    <p>
+                        Create a shared base and develop your
+                        own area with your teammates.
+                    </p>
+
+                </div>
+
+
+                <div class="team-card">
+
+                    <div class="team-icon">
+                        🌐
+                    </div>
+
+                    <h3>Community</h3>
+
+                    <p>
+                        Meet other players and grow your own
+                        Nexora community.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HOW TEAMS WORK
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    TEAM PROGRESSION
+                </div>
+
+                <h2>How Teams Work</h2>
+
+                <p>
+                    Start small, organize your group and build
+                    something worth protecting.
+                </p>
+
+            </div>
+
+
+            <div class="team-steps">
+
+                <div class="team-step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>Gather Your Team</h3>
+
+                    <p>
+                        Find trusted players and create your
+                        own group.
+                    </p>
+
+                </div>
+
+
+                <div class="team-step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>Build Your Base</h3>
+
+                    <p>
+                        Work together on a shared base and
+                        organize your resources.
+                    </p>
+
+                </div>
+
+
+                <div class="team-step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>Grow Together</h3>
+
+                    <p>
+                        Continue progressing and develop your
+                        team's place in the Nexora community.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 TEAM ROLES
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    TEAM ORGANIZATION
+                </div>
+
+                <h2>Everyone Has a Role</h2>
+
+                <p>
+                    A strong team can divide responsibilities
+                    so everyone contributes.
+                </p>
+
+            </div>
+
+
+            <div class="roles-panel">
+
+                <h3>👥 Team Responsibilities</h3>
+
+                <p>
+                    Your team can organize itself however you
+                    want. These are examples of useful roles.
+                </p>
+
+
+                <div class="roles-grid">
+
+                    <div class="role">
+
+                        <div class="role-icon">
+                            🏗️
+                        </div>
+
+                        <strong>Builder</strong>
+
+                        <span>
+                            Focuses on bases, farms and
+                            large construction projects.
+                        </span>
+
+                    </div>
+
+
+                    <div class="role">
+
+                        <div class="role-icon">
+                            🌾
+                        </div>
+
+                        <strong>Farmer</strong>
+
+                        <span>
+                            Helps maintain food and
+                            renewable resources.
+                        </span>
+
+                    </div>
+
+
+                    <div class="role">
+
+                        <div class="role-icon">
+                            📦
+                        </div>
+
+                        <strong>Resource Manager</strong>
+
+                        <span>
+                            Helps organize shared items
+                            and storage.
+                        </span>
+
+                    </div>
+
+
+                    <div class="role">
+
+                        <div class="role-icon">
+                            🧭
+                        </div>
+
+                        <strong>Explorer</strong>
+
+                        <span>
+                            Explores the world and helps
+                            locate useful areas.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BENEFITS
+            ========================== -->
+
+            <div class="section-heading">
+
+                <div class="small">
+                    TEAM BENEFITS
+                </div>
+
+                <h2>Why Play Together?</h2>
+
+                <p>
+                    Survival becomes more organized when players
+                    can share ideas, builds and responsibilities.
+                </p>
+
+            </div>
+
+
+            <div class="benefits">
+
+                <div class="benefit-panel">
+
+                    <h3>
+                        🏗️ Shared Progress
+                    </h3>
+
+                    <p>
+                        Build larger projects by combining
+                        the time and resources of multiple
+                        players.
+                    </p>
+
+                    <ul class="benefit-list">
+
+                        <li>
+                            <span>✓</span>
+                            Shared building projects
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Organized storage
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Resource cooperation
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Better project coordination
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="benefit-panel">
+
+                    <h3>
+                        🤝 Community
+                    </h3>
+
+                    <p>
+                        Teams can become the foundation of
+                        friendships and long-term communities.
+                    </p>
+
+                    <ul class="benefit-list">
+
+                        <li>
+                            <span>✓</span>
+                            Play with friends
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Coordinate projects
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Meet other players
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Build your own community
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NOTE
+            ========================== -->
+
+            <div class="team-note">
+
+                <strong>
+                    ℹ️ Team System
+                </strong>
+
+                <p>
+                    Team commands, permissions, member limits and
+                    available team features are controlled by the
+                    live Nexora server configuration. This page
+                    describes the team concept without hard-coding
+                    server-specific limits that may change.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CTA
+            ========================== -->
+
+            <section class="teams-cta">
+
+                <h2>
+                    Build Your Team
+                </h2>
+
+                <p>
+                    Bring your friends to Nexora SMP and start
+                    building your own story together.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                        href="index.html"
+                        class="cta-button primary">
+                        🌐 Join Nexora
+                    </a>
+
+                    <a
+                        href="lifesteal.html"
+                        class="cta-button">
+                        ❤️ Lifesteal
+                    </a>
+
+                    <a
+                        href="https://discord.gg/vSGXupYJG"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="cta-button">
+                        💬 Join Discord
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h2>
+                    NEXORA <span>SMP</span>
+                </h2>
+
+                <p>
+                    Java + Bedrock Lifesteal survival server
+                    built around progression, economy, teams
+                    and community.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Navigation</h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="features.html">
+                    Features
+                </a>
+
+                <a href="lifesteal.html">
+                    Lifesteal
+                </a>
+
+                <a href="economy.html">
+                    Economy
+                </a>
+
+                <a href="teams.html">
+                    Teams
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Server</h3>
+
+                <a href="players.html">
+                    Players
+                </a>
+
+                <a href="leaderboard.html">
+                    Leaderboard
+                </a>
+
+                <a href="rules.html">
+                    Rules
+                </a>
+
+                <a href="vote.html">
+                    Vote
+                </a>
+
+                <a href="status.html">
+                    Status
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Community</h3>
+
+                <a
+                    href="https://discord.gg/vSGXupYJG"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Discord
+                </a>
+
+                <a
+                    href="https://youtube.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a href="login.html">
+                    Player Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NEXORA SMP. All rights reserved.
+            </span>
+
+            <span>
+                Java + Bedrock • Lifesteal
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================
+     MOBILE NAVIGATION
+========================== -->
+
+<script>
+
+function toggleMenu() {
+
+    const nav = document.getElementById("mainNav");
+
+    if (!nav) return;
+
+    nav.classList.toggle("active");
+
+}
+
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        const nav = document.getElementById("mainNav");
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
